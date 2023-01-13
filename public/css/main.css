@@ -1,0 +1,21 @@
+/*
+#E8E8E8; gris clair
+#BFBFBF; gris
+#96939B; gris moyen
+#47555E; gris foncé logo
+#FC814A; orange
+*/
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+}
+
+body {
+    /*font-family: 'Hind Guntur', sans-serif;*/
+    /*font-family: 'Overpass', sans-serif;*/
+    /*font-family: 'Questrial', sans-serif;*/
+    /* font-family: 'Raleway Dots', cursive;*/
+    font-family: 'Hind Guntur', sans-serif;
+
+}
