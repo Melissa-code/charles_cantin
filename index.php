@@ -1,42 +1,54 @@
 <?php
+//session_start();
 
-if(empty($_GET['page'])) {
-    $page = "accueil";
+require_once("controllers/ErrorController.php");
+require_once ("controllers/HomeController.php");
+require_once ("controllers/GalleryController.php");
+require_once ("controllers/PricesController.php");
+require_once ("controllers/ContactController.php");
+require_once ("controllers/LoginController.php");
+
+$errorController = new ErrorController();
+$homeController = new HomeController();
+$galleryController = new GalleryController();
+$pricesController = new PricesController();
+$contactController = new ContactController();
+$loginController = new LoginController();
+
+if($_SERVER['SERVER_NAME'] === 'localhost'){
+    define("URL", str_replace("index.php", "", "http". "://". $_SERVER['HTTP_HOST']. $_SERVER['PHP_SELF']));
 } else {
-    $url = explode("/", filter_var($_GET['page']),FILTER_SANITIZE_URL); //to secure the url
-    $page = $url[0];
+    define("URL", str_replace("index.php", "", "https". "://". $_SERVER['HTTP_HOST']. $_SERVER['PHP_SELF']));
 }
 
-switch ($page) {
-    case "accueil":
-        $page_description = "Site vitrine de Charles Cantin photographe";
-        $page_title = "Accueil";
-        $page_content = "<h1>Charles Cantin - Photographe</h1>";
-    break;
-    case "galerie":
-        $page_description = "Site vitrine de Charles Cantin photographe";
-        $page_title = "Galerie";
-        $page_content = "<h1>Galerie photos</h1>";
-        break;
-    case "tarifs":
-        $page_description = "Site vitrine de Charles Cantin photographe";
-        $page_title = "Tarifs et prestations";
-        $page_content = "<h1>Tarifs et prestations</h1>";
-        break;
-    case "contact":
-        $page_description = "Site vitrine de Charles Cantin photographe";
-        $page_title = "Contact";
-        $page_content = "<h1>Contact</h1>";
-        break;
-    case "connexion":
-        $page_description = "Site vitrine de Charles Cantin photographe";
-        $page_title = "Connexion";
-        $page_content = "<h1>Connexion</h1>";
-        break;
+try {
+    if(empty($_GET['page'])) {
+        $page = "accueil";
+    } else {
+        $url = explode("/", filter_var($_GET['page']),FILTER_SANITIZE_URL); //to secure the url
+        $page = $url[0];
+    }
+
+    switch ($page) {
+        case "accueil":
+            $homeController->home();
+            break;
+        case "galerie":
+            $galleryController->gallery();
+            break;
+        case "tarifs":
+            $pricesController->prices();
+            break;
+        case "contact":
+            $contactController->contact();
+            break;
+        case "connexion":
+            $loginController->login();
+            break;
+        default:
+            throw new Exception("La page n'existe pas.");
+    }
+} catch(Exception $e) {
+    $errorController->error($e->getMessage());
 }
 
-
-require_once("views/common/template.php");
-?>
-
-<img src="public/assets/images/bg-home.png" alt="">

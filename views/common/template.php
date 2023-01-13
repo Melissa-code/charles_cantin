@@ -16,11 +16,22 @@
 <body>
     <?php require_once("views/common/header.php"); ?>
 
-    <div class="container">
-        <main>
-            <?= $page_content; ?>
-        </main>
-    </div>
+        <div class="container">
+            <main>
+                <?php if(!empty($_SESSION['alert'])) : ?>
+                    <div class="alert <?= $_SESSION['alert']['type']; ?> alert-dismissible" role="alert">
+                        <?= $_SESSION['alert']['message']; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
+                unset($_SESSION);
+                endif;
+                ?>
+
+                <?= $page_content; ?>
+            </main>
+        </div>
+
 
     <?php require_once("views/common/footer.php"); ?>
 
