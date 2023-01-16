@@ -6,9 +6,17 @@
 #FC814A; orange
 */
 
-h1 {
+h1, h2, h3 {
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
+}
+
+h2{
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 2rem;
 }
 
 body {
@@ -23,7 +31,7 @@ body {
 
 
 .home {
-    background-image: url("../assets/images/bg-4.png");
+    background-image: url("../assets/images/home-bg.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -40,4 +48,29 @@ body {
     font-size: 30px;
     color: white;
     /*font-family: 'Raleway Dots', cursive;*/
+}
+
+
+.subtitle-frame {
+    background-color: #BFBFBF;
+    color: white;
+}
+
+.btn-custom {
+    background-color: #FC814A;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #96939B;
+    color: white;
+}
+
+.services {
+    background-image: url("../assets/images/home-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 70vh;
 }

@@ -3,15 +3,15 @@
 
 require_once("controllers/ErrorController.php");
 require_once ("controllers/HomeController.php");
-require_once ("controllers/GalleryController.php");
-require_once ("controllers/PricesController.php");
+require_once("controllers/PhotosController.php");
+require_once("controllers/ServicesController.php");
 require_once ("controllers/ContactController.php");
 require_once ("controllers/LoginController.php");
 
 $errorController = new ErrorController();
 $homeController = new HomeController();
-$galleryController = new GalleryController();
-$pricesController = new PricesController();
+$galleryController = new PhotosController();
+$pricesController = new ServicesController();
 $contactController = new ContactController();
 $loginController = new LoginController();
 
@@ -37,7 +37,7 @@ try {
             $galleryController->gallery();
             break;
         case "tarifs":
-            $pricesController->prices();
+            $pricesController->services();
             break;
         case "contact":
             $contactController->contact();

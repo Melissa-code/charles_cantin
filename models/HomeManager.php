@@ -11,7 +11,7 @@ class HomeManager extends ModelClass
         $this->admins[] = $admin;
     }
 
-    public function getAdmins() : array {
+    public function getAdmins() : ?array {
         return $this->admins;
     }
 

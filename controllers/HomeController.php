@@ -21,6 +21,7 @@ class HomeController
 
     public function home(): void {
         $dataAdmins = $this->homeManager->getAdmins();
+        //var_dump($dataAdmins);
         foreach($dataAdmins as $oneAdmin) {
             $admin = $oneAdmin;
             //var_dump($admin);
@@ -30,9 +31,6 @@ class HomeController
             "page_description" => "Portfolio de Charles Cantin photographe",
             "page_title" => "Accueil",
             "admin" => $admin,
-            "view"=>"views/homeView.php",
-            "template"=>"views/common/template.php",
-
         ];
         $this->generatePage($data_page);
     }
