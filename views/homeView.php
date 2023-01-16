@@ -4,17 +4,12 @@
 
             <div class="title-frame rounded p-3">
                 <h1 class="fw-bold home-title ">
-                    <?php foreach($data as $line) :?>
-                        <?php echo $line['firstname_admin'].' '.$line['name_admin'].' - '.$line['job_admin']; ?>
-                    <?php endforeach; ?>
+                    <?= $admin->getFirstnameAdmin().' '.$admin->getNameAdmin().' - '.$admin->getJobAdmin(); ?>
                 </h1>
             </div>
 
         </div>
     </div>
-
-
-
 </div>
 
 
