@@ -13,7 +13,7 @@ class AdminClass
     private string $secret_admin;
 
 
-    public function __construct($id_admin, $name_admin, $firstname_admin, $job_admin, $email_admin, $password_admin, $creation_admin, $secret_admin) {
+    public function __construct(int $id_admin, string $name_admin, string $firstname_admin, string $job_admin, string $email_admin, string $password_admin, string $creation_admin, string $secret_admin) {
         $this->id_admin = $id_admin;
         $this->name_admin = $name_admin;
         $this->firstname_admin = $firstname_admin;
@@ -25,11 +25,11 @@ class AdminClass
     }
 
 
-    public function getIdAdmin(): int {
+    public function getIdAdmin(): ?int {
         return $this->id_admin;
     }
 
-    public function getNameAdmin(): string {
+    public function getNameAdmin(): ?string {
         return $this->name_admin;
     }
 
@@ -38,7 +38,7 @@ class AdminClass
         return $this;
     }
 
-    public function getFirstnameAdmin(): string {
+    public function getFirstnameAdmin(): ?string {
         return $this->firstname_admin;
     }
 
@@ -47,7 +47,7 @@ class AdminClass
         return $this;
     }
 
-    public function getJobAdmin(): string {
+    public function getJobAdmin(): ?string {
         return $this->job_admin;
     }
 
@@ -56,7 +56,7 @@ class AdminClass
         return $this;
     }
 
-    public function getEmailAdmin(): string {
+    public function getEmailAdmin(): ?string {
         return $this->email_admin;
     }
 
@@ -65,7 +65,7 @@ class AdminClass
         return $this;
     }
 
-    public function getPasswordAdmin(): string {
+    public function getPasswordAdmin(): ?string {
         return $this->password_admin;
     }
 
@@ -74,7 +74,7 @@ class AdminClass
         return $this;
     }
 
-    public function getCreationAdmin(): string {
+    public function getCreationAdmin(): ?string {
         return $this->creation_admin;
     }
 
@@ -83,7 +83,7 @@ class AdminClass
         return $this;
     }
 
-    public function getSecretAdmin(): string {
+    public function getSecretAdmin(): ?string {
         return $this->secret_admin;
     }
 

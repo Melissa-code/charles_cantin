@@ -63,6 +63,7 @@ body {
 
 .btn-custom:hover {
     background-color: #96939B;
+    opacity: 0.8;
     color: white;
 }
 
@@ -73,4 +74,47 @@ body {
     background-size: cover;
     width: 100vw;
     height: 70vh;
+}
+
+.contact {
+    background-image: url("../assets/images/home-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 70vh;
+}
+
+.address, .contact-form {
+    background-color: #E8E8E8;
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid #BFBFBF;
+    border-radius: 10px;
+}
+
+.address {
+    display: flex;
+    justify-content: center;
+    line-height: 40px;
+}
+
+.login {
+    background-image: url("../assets/images/home-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 70vh;
+}
+.login-form {
+    background-color: #E8E8E8;
+    padding: 2rem;
+    margin: 1rem;
+    border: 1px solid #BFBFBF;
+    border-radius: 10px;
+}
+
+.map {
+    width: 600px;
 }

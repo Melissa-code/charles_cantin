@@ -1,50 +1,53 @@
 <div class="gallery w-100">
 
     <div class="row h-100">
-        <div class="col d-flex justify-content-center">
-            <h1>Galerie photos</h1>
+        <div class="col d-flex justify-content-center align-items-center my-5">
+            <!-- Page title -->
+
+            <h1 class="me-4">Galerie photos</h1>
+
+            <!-- Category Select -->
+
             <div class="col-md-4">
                 <select class="form-select" id="country" required="">
-                    <option value="">Recherche par catégorie</option>
-                    <option>United States</option>
+                    <option value="">Rechercher par catégorie</option>
+                    <?php foreach($categories as $category) : ?>
+                    <option value="" name="category"><?= $category->getTitleCategory(); ?></option>
+                    <?php endforeach; ?>
                 </select>
                 <div class="invalid-feedback">
-                    Please select a valid country.
+                    Sélectionnez une catégorie valide.
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row d-flex flex-wrap justify-content-center">
-        <div class="col-md-4 ">
-            <div class="card shadow-sm">
-                <img src="<?= URL ?>public/assets/images/bg-4.png" alt="" class="rounded-top">
-                <figcaption class="text-center">legend</figcaption>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-warning">Modifier</button>
-                            <button type="button" class="btn btn-sm btn-outline-danger">Supprimer</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col d-flex justify-content-center align-items-center mb-4">
+            <a href=""  class="btn btn-sm btn-outline-secondary">Ajouter une photo</a>
         </div>
+    </div>
 
-        <div class="col-md-4 ">
-            <div class="card shadow-sm">
-                <img src="<?= URL ?>public/assets/images/bg-4.png" alt="" class="rounded-top">
-                <figcaption class="text-center">legend</figcaption>
-                <div class="card-body">
+    <!-- Photos gallery -->
+
+    <div class="row d-flex flex-wrap justify-content-center">
+        <?php foreach($photos as $photo) : ?>
+        <div class="col-md-3">
+            <div class="card shadow-sm m-1">
+                <img src="<?= URL ?>public/assets/images/<?= $photo->getImagePhoto(); ?>" alt="" class="rounded-top">
+                <?= $photo->getLegendPhoto(); ?>
+                <div class="card-body d-flex justify-content-center">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
+                        <div class="btn-group ">
                             <button type="button" class="btn btn-sm btn-outline-warning">Modifier</button>
                             <button type="button" class="btn btn-sm btn-outline-danger">Supprimer</button>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+        <?php endforeach; ?>
 
     </div>
 </div>
