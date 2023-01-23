@@ -32,19 +32,26 @@ try {
     switch ($page) {
         case "accueil":
             $homeController->home();
-            break;
+        break;
         case "galerie":
-            $galleryController->gallery();
-            break;
+            if(empty($url[1])) {
+                $galleryController->gallery();
+            } else if($url[1] === "ajouterPhoto") {
+                $galleryController->create();
+            } else if($url[1] === "ajouterPhotoValidation") {
+                $galleryController->createValidation();
+            }
+
+        break;
         case "tarifs":
             $pricesController->services();
-            break;
+        break;
         case "contact":
             $contactController->contact();
-            break;
+        break;
         case "connexion":
             $loginController->login();
-            break;
+        break;
         default:
             throw new Exception("La page n'existe pas.");
     }

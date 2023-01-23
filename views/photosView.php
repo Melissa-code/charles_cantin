@@ -12,7 +12,7 @@
                 <select class="form-select" id="country" required="">
                     <option value="">Rechercher par catégorie</option>
                     <?php foreach($categories as $category) : ?>
-                    <option value="" name="category"><?= $category->getTitleCategory(); ?></option>
+                        <option value="" name="category"><?= $category->getTitleCategory(); ?></option>
                     <?php endforeach; ?>
                 </select>
                 <div class="invalid-feedback">
@@ -24,7 +24,7 @@
 
     <div class="row">
         <div class="col d-flex justify-content-center align-items-center mb-4">
-            <a href=""  class="btn btn-sm btn-outline-secondary">Ajouter une photo</a>
+            <a href="<?= URL ?>galerie/ajouterPhoto"  class="btn btn-sm btn-outline-secondary">Ajouter une photo</a>
         </div>
     </div>
 
@@ -32,23 +32,22 @@
 
     <div class="row d-flex flex-wrap justify-content-center">
         <?php foreach($photos as $photo) : ?>
-        <div class="col-md-3">
-            <div class="card shadow-sm m-1">
-                <img src="<?= URL ?>public/assets/images/<?= $photo->getImagePhoto(); ?>" alt="" class="rounded-top">
-                <?= $photo->getLegendPhoto(); ?>
-                <div class="card-body d-flex justify-content-center">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group ">
-                            <button type="button" class="btn btn-sm btn-outline-warning">Modifier</button>
-                            <button type="button" class="btn btn-sm btn-outline-danger">Supprimer</button>
+            <div class="col-md-3">
+                <div class="card shadow-sm m-1">
+                    <img src="<?= URL ?>public/assets/images/<?= $photo->getImagePhoto(); ?>" alt="" class="rounded-top">
+                    <?= $photo->getLegendPhoto(); ?>
+                    <div class="card-body d-flex justify-content-center">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group ">
+                                <button type="button" class="btn btn-sm btn-outline-warning">Modifier</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
         <?php endforeach; ?>
 
     </div>
 </div>
-
