@@ -63,10 +63,9 @@ class PhotosController
         $image_photo = $this->addImage($file, $directory);
         $id_admin = 1;
         //echo $_POST['id_category'];
-        /
         $this->photoManager->addPhotoDb($_POST['legend_photo'], $image_photo, $id_admin, $_POST['id_category']);
-        header("location: ".URL."galerie");
-        exit();
+        //header("location: ".URL."galerie");
+        //exit();
     }
 
 
