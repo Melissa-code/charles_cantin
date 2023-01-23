@@ -60,11 +60,13 @@ class PhotosController
         $file = $_FILES['image_photo'];
         //print_r($file);
         $directory = "public/assets/images/";
-        $image = $this->addImage($file, $directory);
+        $image_photo = $this->addImage($file, $directory);
         $id_admin = 1;
-
-        //$this->photoManager->addPhotoDb($_POST['legend_photo'], $image,  $id_admin, $_POST['id_category']);
-        //header("location: ".URL."galerie");
+        //echo $_POST['id_category'];
+        /
+        $this->photoManager->addPhotoDb($_POST['legend_photo'], $image_photo, $id_admin, $_POST['id_category']);
+        header("location: ".URL."galerie");
+        exit();
     }
 
 

@@ -24,10 +24,10 @@
                 </div>
                 <div class="mb-3">
                     <label for="id_category" class="form-label">Catégorie : </label>
-                    <select class="form-select">
+                    <select class="form-select" id="id_category" name="id_category">
                         <option selected>Choisir une catégorie</option>
                         <?php foreach ($categories as $category) : ?>
-                            <option name="id_category" value=""><?= $category->getTitleCategory(); ?></option>
+                            <option value="<?= $category->getIdCategory(); ?>"><?= $category->getTitleCategory(); ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
