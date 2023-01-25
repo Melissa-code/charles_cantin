@@ -28,6 +28,9 @@ class PhotosController
         require_once("views/common/template.php");
     }
 
+    /**
+     * Diplay all the photos in a gallery
+     */
     public function gallery(): void {
         $photos = $this->photoManager->getPhotos();
         $admins = $this->homeManager->getAdmins();
@@ -44,6 +47,9 @@ class PhotosController
         $this->generatePage($data_page);
     }
 
+    /**
+     * Display a Create form to add a photo
+     */
     public function create(): void {
         $categories = $this->categoryManager->getCategories();
 
@@ -56,6 +62,9 @@ class PhotosController
         $this->generatePage($data_page);
     }
 
+    /**
+     * @throws Exception
+     */
     public function createValidation() {
         $file = $_FILES['image_photo'];
         //print_r($file);
@@ -64,8 +73,8 @@ class PhotosController
         $id_admin = 1;
         //echo $_POST['id_category'];
         $this->photoManager->addPhotoDb($_POST['legend_photo'], $image_photo, $id_admin, $_POST['id_category']);
-        //header("location: ".URL."galerie");
-        //exit();
+        header("location: ".URL."galerie");
+        exit();
     }
 
 
@@ -105,5 +114,18 @@ class PhotosController
         if(!move_uploaded_file($file['tmp_name'], $target_file))
             throw new Exception("l'ajout de l'image n'a pas fonctionné");
         else return ($random."_".$file['name']);
+    }
+
+    /**
+     * Delete a photo
+     *
+     * @param string $id
+     */
+    public function delete(string $id): void {
+        $imageName = $this->photoManager->getPhotoById($id)->getImagePhoto();
+        unlink("public/assets/images/".$imageName); // Delete the image file
+        $this->photoManager->deleteDb($id);
+        header("location: ".URL."galerie");
+        exit();
     }
 }

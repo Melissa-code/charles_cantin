@@ -29,7 +29,22 @@ class PhotoManager extends ModelClass
         foreach($data as $photo) {
             $ph = new PhotoClass($photo['id_photo'], $photo['legend_photo'], $photo['image_photo'], $photo['id_admin'], $photo['id_category']);
             $this->addPhoto($ph);
-            //var_dump($photo);
+        }
+    }
+
+    /**
+     * Get a photo by id
+     *
+     * @param string $id
+     * @return PhotoClass|null
+     */
+    public function getPhotoById(string $id): ?PhotoClass
+    {
+        foreach ($this->photos as $photo) {
+            if ($photo->getIdPhoto() === (int)$id) {
+                //var_dump($photo);
+                return $photo;
+            }
         }
     }
 
@@ -55,8 +70,8 @@ class PhotoManager extends ModelClass
             // If the photos already exists, print an error message
             if($legendVerification['numberLegend'] >= 1) {
                 echo("La légende de la photo existe déjà");
-                //header('location:'.URL."galerie/ajouterPhoto");
-                //exit();
+                header('location:'.URL."galerie/ajouterPhoto");
+                exit();
             }
             // Create the new photo in the database
             else {
@@ -75,6 +90,24 @@ class PhotoManager extends ModelClass
                     echo ("La photo a bien été créée");
                 }
             }
+        }
+    }
+
+    /**
+     * Delete a photo in the database
+     *
+     * @param string $id
+     */
+    public function deleteDb(string $id) : void {
+        $pdo = $this->getDb();
+        $req = $pdo->prepare("DELETE FROM photos WHERE id_photo = :id");
+        $req->bindValue(":id", (int)$id, PDO::PARAM_INT);
+        $data = $req->execute();
+        $req->closeCursor();
+
+        if($data > 0) {
+            $photo = $this->getPhotoById($id);
+            unset($photo); // Delete $photo in the array $photos
         }
     }
 

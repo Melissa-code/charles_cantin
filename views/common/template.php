@@ -32,10 +32,17 @@
             </main>
         </div>
 
-
     <?php require_once("views/common/footer.php"); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $("a[data-delete]").click(function () {
+            let link = $(this).attr("data-delete"); // get the attr btn
+            $("#delete-btn").attr("href", link); // write the link in the btn
+        })
+    </script>
 </body>
 </html>
 

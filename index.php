@@ -10,7 +10,7 @@ require_once ("controllers/LoginController.php");
 
 $errorController = new ErrorController();
 $homeController = new HomeController();
-$galleryController = new PhotosController();
+$photosController = new PhotosController();
 $pricesController = new ServicesController();
 $contactController = new ContactController();
 $loginController = new LoginController();
@@ -35,11 +35,14 @@ try {
         break;
         case "galerie":
             if(empty($url[1])) {
-                $galleryController->gallery();
+                $photosController->gallery();
             } else if($url[1] === "ajouterPhoto") {
-                $galleryController->create();
+                $photosController->create();
             } else if($url[1] === "ajouterPhotoValidation") {
-                $galleryController->createValidation();
+                $photosController->createValidation();
+            } else if($url[1] === "supprimer") {
+                //echo $url[2];
+                $photosController->delete($url[2]);
             }
 
         break;
