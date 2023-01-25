@@ -13,7 +13,7 @@
     <title><?= $page_title ?></title>
 </head>
 
-<body>
+<body class="">
     <?php require_once("views/common/header.php"); ?>
 
         <div class="container">
