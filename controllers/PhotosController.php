@@ -20,6 +20,11 @@ class PhotosController
         $this->homeManager->getAllAdminsDb();
     }
 
+    /**
+     * Generate a page
+     *
+     * @param array $data
+     */
     private function generatePage(array $data): void {
         extract($data);
         ob_start();
@@ -63,20 +68,19 @@ class PhotosController
     }
 
     /**
+     * Add a photo
+     *
      * @throws Exception
      */
     public function createValidation() {
         $file = $_FILES['image_photo'];
-        //print_r($file);
         $directory = "public/assets/images/";
         $image_photo = $this->addImage($file, $directory);
         $id_admin = 1;
-        //echo $_POST['id_category'];
         $this->photoManager->addPhotoDb($_POST['legend_photo'], $image_photo, $id_admin, $_POST['id_category']);
         header("location: ".URL."galerie");
         exit();
     }
-
 
     /**
      * Add an image file
@@ -128,4 +132,54 @@ class PhotosController
         header("location: ".URL."galerie");
         exit();
     }
+
+    /**
+     * Display a photo updating form
+     *
+     * @param string $id
+     */
+    public function update(string $id): void {
+        $photo = $this->photoManager->getPhotoById($id);
+        $categories = $this->categoryManager->getCategories();
+
+        $data_page = [
+            "page_description" => "Modfification d'une photo",
+            "page_title" => "Modfification une photo",
+            "photo" => $photo,
+            "categories" => $categories,
+            "view" => "views/updatePhotoView.php",
+        ];
+        $this->generatePage($data_page);
+    }
+
+    /**
+     * Update a photo
+     */
+    public function updateValidation(): void {
+        $id_admin = 1;
+        $oldImage = $this->photoManager->getPhotoById($_POST['oldId_photo'])->getImagePhoto();
+        $file = $_FILES['image_photo'];
+
+        // if the admin is changing the image file
+        if($file['size'] > 0) {
+            // remove the old image
+            unlink("public/assets/images/".$oldImage);
+            // add a new image file
+            $directory = "public/assets/images/";
+            $image_photo = $this->addImage($file, $directory);
+        } else {
+            $image_photo = $oldImage;
+        }
+//var_dump( $_POST['legend_photo']);
+//        echo $image_photo;
+//var_dump($_POST['id_category']); /// string
+//var_dump($id_admin);
+//var_dump(['oldIdCategory']); // string//
+//var_dump($_POST['oldId_photo']); //string
+
+        $this->photoManager->updatePhotoDb($_POST['oldId_photo'], $_POST['legend_photo'], $image_photo, $_POST['id_category'], $id_admin);
+        //header("location: ".URL."galerie");
+        //exit();
+    }
+
 }

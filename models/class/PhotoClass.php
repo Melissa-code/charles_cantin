@@ -9,6 +9,8 @@ class PhotoClass
     private ?int $id_admin;
     private ?int $id_category;
 
+    private ?int $oldId_photo;
+
     public function __construct(int $id_photo, string $legend_photo, string $image_photo, int $id_admin, int $id_category) {
         $this->id_photo = $id_photo;
         $this->legend_photo = $legend_photo;
@@ -57,5 +59,11 @@ class PhotoClass
         $this->id_category = $id_category;
         return $this;
     }
+
+    public function getOldIdPhoto(): ?int {
+        return $this->oldId_photo;
+    }
+
+
 
 }

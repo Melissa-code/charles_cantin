@@ -45,9 +45,9 @@
                             <div class="btn-group ">
                                 <form action="<?= URL ?>galerie/supprimer/<?= $photo->getIdPhoto(); ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?')">
                                     <!-- Update a photo -->
-                                    <button type="button" class="btn btn-sm btn-outline-warning">
+                                    <a href="<?= URL ?>galerie/modifierPhoto/<?= $photo->getIdPhoto(); ?>" class="btn btn-sm btn-outline-warning">
                                         <i class="fa-solid fa-pen"></i>
-                                    </button>
+                                    </a>
 
                                     <!-- Delete a photo -->
                                     <button type="submit" class="btn btn-sm btn-outline-danger">
@@ -61,6 +61,5 @@
             </div>
         <?php endforeach; ?>
     </div>
-
 </div>
 

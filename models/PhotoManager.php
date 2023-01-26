@@ -96,9 +96,9 @@ class PhotoManager extends ModelClass
     /**
      * Delete a photo in the database
      *
-     * @param string $id
+     * @param ?string $id
      */
-    public function deleteDb(string $id) : void {
+    public function deleteDb(?string $id) : void {
         $pdo = $this->getDb();
         $req = $pdo->prepare("DELETE FROM photos WHERE id_photo = :id");
         $req->bindValue(":id", (int)$id, PDO::PARAM_INT);
@@ -111,5 +111,36 @@ class PhotoManager extends ModelClass
         }
     }
 
+    /**
+     * Update a photo in the database
+     *
+     * @param string|null $oldId
+     * @param string|null $legend
+     * @param string|null $image
+     * @param string|null $id_category
+     * @param int|null $id_admin
+     */
+    public function updatePhotoDb(?string $oldId, ?string $legend, ?string $image, ?string $id_category, ?int $id_admin) {
+
+        // Update the photo in the database
+        $pdo = $this->getDb();
+        $req = $pdo->prepare("UPDATE photos SET legend_photo = :legend, image_photo = :image, id_category = :id_category, id_admin = :id_admin WHERE id_photo = :oldId");
+        $req->bindValue(":oldId", (int)$oldId, PDO::PARAM_INT);
+        $req->bindValue(":legend", $legend, PDO::PARAM_STR);
+        $req->bindValue(":image", $image, PDO::PARAM_STR);
+        $req->bindValue(":id_category", (int)$id_category, PDO::PARAM_INT);
+        $req->bindValue(":id_admin", $id_admin, PDO::PARAM_INT);
+        $data = $req->execute();
+        $req->closeCursor();
+
+        // Update the photo object
+        if($data > 0) {
+            $this->getPhotoById($oldId)
+                ->setLegendPhoto($legend)
+                ->setImagePhoto($image)
+                ->setIdCategory($id_category)
+                ->setIdAdmin($id_admin);
+        }
+    }
 
 }

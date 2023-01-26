@@ -1,7 +1,9 @@
 <?php
 //print_r(basename($_SERVER['REDIRECT_URL']));
-$currentPage = basename($_SERVER['REDIRECT_URL']);
-//echo $currentPage;
+//if(!empty(basename($_SERVER['REDIRECT_URL']))) {
+//    $currentPage = basename($_SERVER['REDIRECT_URL']);
+//    echo $currentPage;
+//}
 ?>
 
 <div class="container">

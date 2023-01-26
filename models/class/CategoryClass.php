@@ -3,21 +3,21 @@
 
 class CategoryClass
 {
-    private $id_category;
-    private $title_category;
-    private $id_admin;
+    private ?int $id_category;
+    private ?string $title_category;
+    private ?int $id_admin;
 
-    public function __construct($id_category, $title_category, $id_admin) {
+    public function __construct(int $id_category, string $title_category, int $id_admin) {
         $this->id_category = $id_category;
         $this->title_category = $title_category;
         $this->id_admin = $id_admin;
     }
 
-    public function getIdCategory() {
+    public function getIdCategory(): ?int {
         return $this->id_category;
     }
 
-    public function getTitleCategory(){
+    public function getTitleCategory(): ?string {
         return $this->title_category;
     }
 
@@ -26,7 +26,7 @@ class CategoryClass
         return $this;
     }
 
-    public function getIdAdmin() {
+    public function getIdAdmin() : ?int {
         return $this->id_admin;
     }
 

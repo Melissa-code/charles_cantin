@@ -41,10 +41,12 @@ try {
             } else if($url[1] === "ajouterPhotoValidation") {
                 $photosController->createValidation();
             } else if($url[1] === "supprimer") {
-                //echo $url[2];
                 $photosController->delete($url[2]);
+            } else if($url[1] === "modifierPhoto") {
+                $photosController->update($url[2]);
+            } else if($url[1] === "modifierPhotoValidation") {
+                $photosController->updateValidation();
             }
-
         break;
         case "tarifs":
             $pricesController->services();
