@@ -1,6 +1,7 @@
 <?php
 //session_start();
 
+require_once("controllers/SecurityClass.php");
 require_once("controllers/ErrorController.php");
 require_once ("controllers/HomeController.php");
 require_once("controllers/PhotosController.php");

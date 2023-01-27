@@ -16,16 +16,16 @@
             <form action="<?= URL ?>galerie/ajouterPhotoValidation" method="post" enctype="multipart/form-data" class="border border-secondary rounded p-4">
                 <div class="mb-3">
                     <label for="legend" class="form-label">Légende : </label>
-                    <input type="text" class="form-control" id="legend" name="legend_photo" placeholder="Ex: Femme enceinte">
+                    <input type="text" class="form-control" id="legend" name="legend_photo" placeholder="Ex: Femme enceinte" required maxlength="50">
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Image : </label>
-                    <input type="file" class="form-control" id="image" name="image_photo" >
+                    <input type="file" class="form-control" id="image" name="image_photo" required>
                 </div>
                 <div class="mb-3">
                     <label for="id_category" class="form-label">Catégorie : </label>
-                    <select class="form-select" id="id_category" name="id_category">
-                        <option selected>Choisir une catégorie</option>
+                    <select class="form-select" id="id_category" name="id_category" required>
+                        <option value="">Choisir une catégorie</option>
                         <?php foreach ($categories as $category) : ?>
                             <option value="<?= $category->getIdCategory(); ?>"><?= $category->getTitleCategory(); ?></option>
                         <?php endforeach ?>

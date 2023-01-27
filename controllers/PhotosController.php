@@ -68,18 +68,27 @@ class PhotosController
     }
 
     /**
-     * Add a photo
+     * Add a new photo
      *
      * @throws Exception
      */
     public function createValidation() {
-        $file = $_FILES['image_photo'];
-        $directory = "public/assets/images/";
-        $image_photo = $this->addImage($file, $directory);
+        // Secure the user input
+        $legend_photo = SecurityClass::secureHtml($_POST['legend_photo']);
         $id_admin = 1;
-        $this->photoManager->addPhotoDb($_POST['legend_photo'], $image_photo, $id_admin, $_POST['id_category']);
-        header("location: ".URL."galerie");
-        exit();
+
+        if(strlen($legend_photo) < 50) {
+            //echo "Légende de photo mal renseignée. Réessayer";
+            header("location: ".URL."galerie");
+            exit();
+        } else {
+            $file = $_FILES['image_photo'];
+            $directory = "public/assets/images/";
+            $image_photo = $this->addImage($file, $directory);
+            $this->photoManager->addPhotoDb($legend_photo, $image_photo, $id_admin, $_POST['id_category']);
+            header("location: ".URL."galerie");
+            exit();
+        }
     }
 
     /**
@@ -95,8 +104,7 @@ class PhotosController
         if(!isset($file['name']) || empty($file['name']))
             throw new Exception("Vous devez choisir une image");
 
-        // Check if the directory public/assets/images exists or not
-        // If it doesn't exist it creates it 0777 : rights for everybody
+        // If the directory public/assets/images doesn't exist it creates it 0777 : rights for everybody
         if(!file_exists($dir)) mkdir($dir,0777);
 
         // Get the file extension
@@ -156,30 +164,34 @@ class PhotosController
      * Update a photo
      */
     public function updateValidation(): void {
+        // Secure the user input
+        $legend_photo = SecurityClass::secureHtml($_POST['legend_photo']);
         $id_admin = 1;
-        $oldImage = $this->photoManager->getPhotoById($_POST['oldId_photo'])->getImagePhoto();
-        $file = $_FILES['image_photo'];
 
-        // if the admin is changing the image file
-        if($file['size'] > 0) {
-            // remove the old image
-            unlink("public/assets/images/".$oldImage);
-            // add a new image file
-            $directory = "public/assets/images/";
-            $image_photo = $this->addImage($file, $directory);
-        } else {
-            $image_photo = $oldImage;
+        if(strlen($legend_photo) < 50) {
+            //echo "Légende de photo mal renseignée. Réessayer";
+            header("location: ".URL."galerie");
+            exit();
         }
-//var_dump( $_POST['legend_photo']);
-//        echo $image_photo;
-//var_dump($_POST['id_category']); /// string
-//var_dump($id_admin);
-//var_dump(['oldIdCategory']); // string//
-//var_dump($_POST['oldId_photo']); //string
+        else {
+            $oldImage = $this->photoManager->getPhotoById($_POST['oldId_photo'])->getImagePhoto();
+            $file = $_FILES['image_photo'];
 
-        $this->photoManager->updatePhotoDb($_POST['oldId_photo'], $_POST['legend_photo'], $image_photo, $_POST['id_category'], $id_admin);
-        //header("location: ".URL."galerie");
-        //exit();
+            // if the admin is changing the image file
+            if($file['size'] > 0) {
+                // remove the old image
+                unlink("public/assets/images/".$oldImage);
+                // add a new image file
+                $directory = "public/assets/images/";
+                $image_photo = $this->addImage($file, $directory);
+            } else {
+                $image_photo = $oldImage;
+            }
+
+            $this->photoManager->updatePhotoDb($_POST['oldId_photo'], $legend_photo, $image_photo, $_POST['id_category'], $id_admin);
+            header("location: ".URL."galerie");
+            exit();
+        }
     }
 
 }
