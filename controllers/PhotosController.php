@@ -169,7 +169,7 @@ class PhotosController
         $id_admin = 1;
 
         if(strlen($legend_photo) < 50) {
-            //echo "Légende de photo mal renseignée. Réessayer";
+            //echo "Légende de photo trop longue. Réessayer";
             header("location: ".URL."galerie");
             exit();
         }

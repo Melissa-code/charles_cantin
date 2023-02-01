@@ -16,7 +16,7 @@
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center d-flex justify-content-center flex-wrap">
         <?php foreach ($services as $service) : ?>
             <div class="col">
-                <div class="card mb-4 rounded-3" style="height: 18rem;">
+                <div class="card mb-4 rounded-3" >
                     <div class="card-header py-3 ">
                         <h2 class="my-0 fw-normal"><?= $service->getTitleService(); ?></h2>
                     </div>
@@ -37,14 +37,14 @@
                             <form action="<?= URL ?>tarifs/supprimer/<?= $service->getIdService(); ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce tarif ?')">
 
                                 <!-- Button to update a service -->
-                                <a href="" class="btn btn-sm btn-outline-warning">
+                                <a href="<?= URL ?>tarifs/modifier/<?= $service->getIdService(); ?>" class="btn btn-sm btn-warning">
                                     <div class="d-flex justify-content-between align-items-center p-1">
                                         <i class="fa-solid fa-pen"></i>
                                     </div>
                                 </a>
 
                                 <!-- Button to delete a service -->
-                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <button type="submit" class="btn btn-sm btn-danger">
                                     <div class="d-flex justify-content-between align-items-center p-1">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </div>

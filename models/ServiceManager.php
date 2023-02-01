@@ -92,6 +92,11 @@ class ServiceManager extends ModelClass
         }
     }
 
+    /**
+     * Delete a service in the database
+     *
+     * @param string $id
+     */
     public function deleteDb(string $id): void {
         $pdo = $this->getDb();
         $req = $pdo->prepare("DELETE FROM services WHERE id_service = :id");
@@ -105,4 +110,51 @@ class ServiceManager extends ModelClass
         }
     }
 
+    /**
+     * Update a service in the database
+     *
+     * @param string $oldId
+     * @param string $title
+     * @param string $price
+     * @param string $content
+     * @param int $id_admin
+     */
+    public function updateServiceDB(string $oldId, string $title, string $price, string $content, int $id_admin): void
+    {
+        $pdo = $this->getDb();
+        // Count the duplicate photos in the database
+        $req = $pdo->prepare("SELECT count(*) as numberTitle FROM services WHERE title_service = :title");
+        $req->bindValue(":title", $title, PDO::PARAM_STR);
+        $req->execute();
+
+        // Reading the rows in the table services
+        while ($titleVerification = $req->fetch()) {
+            // If the service already exists, print an error message
+            if ($titleVerification['numberTitle'] >= 1) {
+                //echo("Le titre de la prestation existe déjà");
+                header('location:' . URL . "tarifs/modifier/".$oldId);
+                exit();
+            } // Update the service in the database
+            else {
+                //echo "ok";
+                $req = $pdo->prepare("UPDATE services SET title_service = :title, price_service = :price, content_service = :content, id_admin = :id_admin WHERE id_service = :oldId");
+                $req->bindValue(":oldId", (int)$oldId, PDO::PARAM_INT);
+                $req->bindValue(":title", $title, PDO::PARAM_STR);
+                $req->bindValue(":price", $price, PDO::PARAM_STR);
+                $req->bindValue(":content", $content, PDO::PARAM_STR);
+                $req->bindValue(":id_admin", $id_admin, PDO::PARAM_INT);
+                $data = $req->execute();
+                $req->closeCursor();
+            }
+
+            // Update the service object
+            if ($data > 0) {
+                $this->getServiceById($oldId)
+                    ->settitleService($title)
+                    ->setPriceService($price)
+                    ->setContentService($content)
+                    ->setIdAdmin($id_admin);
+            }
+        }
+    }
 }
