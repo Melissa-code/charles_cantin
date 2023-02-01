@@ -49,7 +49,7 @@ class PhotoManager extends ModelClass
     }
 
     /**
-     * Add a photo in the DB
+     * Add a new photo in the DB
      *
      * @param $legend
      * @param $image
@@ -60,8 +60,7 @@ class PhotoManager extends ModelClass
 
         $pdo = $this->getDb();
         // Count the duplicate photos in the database
-        $req = $pdo->prepare(
-            "SELECT count(*) as numberLegend FROM photos WHERE legend_photo = :legend");
+        $req = $pdo->prepare("SELECT count(*) as numberLegend FROM photos WHERE legend_photo = :legend");
         $req->bindValue(":legend", $legend, PDO::PARAM_STR);
         $req->execute();
 

@@ -156,6 +156,7 @@ class PhotosController
             "photo" => $photo,
             "categories" => $categories,
             "view" => "views/updatePhotoView.php",
+            //"view" => "views/admin/updatePhoto.php",
         ];
         $this->generatePage($data_page);
     }

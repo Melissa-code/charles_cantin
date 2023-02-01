@@ -8,13 +8,15 @@ require_once("controllers/PhotosController.php");
 require_once("controllers/ServicesController.php");
 require_once ("controllers/ContactController.php");
 require_once ("controllers/LoginController.php");
+require_once ("controllers/CategoryController.php");
 
 $errorController = new ErrorController();
 $homeController = new HomeController();
 $photosController = new PhotosController();
-$pricesController = new ServicesController();
+$servicesController = new ServicesController();
 $contactController = new ContactController();
 $loginController = new LoginController();
+$categoryController = new CategoryController();
 
 if($_SERVER['SERVER_NAME'] === 'localhost'){
     define("URL", str_replace("index.php", "", "http". "://". $_SERVER['HTTP_HOST']. $_SERVER['PHP_SELF']));
@@ -48,9 +50,20 @@ try {
             } else if($url[1] === "modifierPhotoValidation") {
                 $photosController->updateValidation();
             }
+            else if($url[1] === "categories") {
+                $categoryController->categories();
+            } else if($url[1] === "ajouterCategorie") {
+                $photosController->create();
+            }
         break;
         case "tarifs":
-            $pricesController->services();
+            if(empty($url[1])) {
+                $servicesController->services();
+            } else if($url[1] === "ajouterTarif") {
+                $servicesController->create();
+            } else if($url[1] === "ajouterTarifValidation") {
+                $servicesController->createValidation();
+            }
         break;
         case "contact":
             $contactController->contact();

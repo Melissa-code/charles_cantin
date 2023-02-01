@@ -1,6 +1,5 @@
 <?php
 
-
 class SecurityClass
 {
     /**
@@ -12,7 +11,7 @@ class SecurityClass
     public static function secureHtml(string $typing): ?string {
         $typing = trim($typing);
         $typing = stripcslashes($typing);
-        $typing = htmlentities($typing);
+        $typing = htmlentities($typing); // convert special characters to HTML entities
         return $typing;
     }
     

@@ -14,11 +14,44 @@
                         <h2 class="my-0 fw-normal"><?= $service->getTitleService(); ?></h2>
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title pricing-card-title fw-bold"><?= $service->getPriceService(); ?> €</h3>
+                        <h3 class="card-title pricing-card-title fw-bold">
+                            <?php if($service->getPriceService()) {
+                                 echo $service->getPriceService(). "€";
+                            } else {
+                                echo "Sur devis";
+                            } ?>
+                        </h3>
                         <ul class="list-unstyled mt-3 mb-4">
                             <li><?= $service->getContentService(); ?></li>
                         </ul>
                         <a href="contact" class="w-100 btn btn-lg btn-custom">Réserver</a>
+
+                        <div class="mt-2">
+                            <form action="" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce tarif ?')">
+
+                                <!-- Button to add a new service & price -->
+
+                                <a href="<?= URL?>tarifs/ajouterTarif" class="btn btn-sm btn-outline-secondary">
+                                    <div class="d-flex justify-content-between align-items-center p-1">
+                                        <i class="fa-solid fa-circle-plus"> </i>
+                                    </div>
+                                </a>
+
+                                <!-- Button to update a service -->
+                                <a href="" class="btn btn-sm btn-outline-warning">
+                                    <div class="d-flex justify-content-between align-items-center p-1">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </div>
+                                </a>
+
+                                <!-- Button to delete a service -->
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <div class="d-flex justify-content-between align-items-center p-1">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
 
                     </div>
                 </div>

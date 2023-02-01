@@ -1,8 +1,7 @@
 <?php
 
+class CategoryClass {
 
-class CategoryClass
-{
     private ?int $id_category;
     private ?string $title_category;
     private ?int $id_admin;

@@ -16,6 +16,9 @@ class ServiceManager extends ModelClass
         return $this->services;
     }
 
+    /**
+     *
+     */
     public function getAllServicesDb() {
         $pdo = $this->getDb();
         $req = $pdo->prepare("SELECT * FROM services");
@@ -26,6 +29,50 @@ class ServiceManager extends ModelClass
         foreach($data as $service) {
             $s = new ServiceClass($service['id_service'], $service['title_service'], $service['price_service'], $service['content_service'], $service['id_admin']);
             $this->addService($s);
+        }
+    }
+
+    /**
+     * Add a new service in the DB
+     *
+     * @param $title
+     * @param $price
+     * @param $content
+     * @param $idAdmin
+     */
+    public function addServiceDb($title, $price, $content, $idAdmin): void {
+
+        $pdo = $this->getDb();
+        // Count the duplicate photos in the database
+        $req = $pdo->prepare("SELECT count(*) as numberTitle FROM services WHERE title_service = :title");
+        $req->bindValue(":title", $title, PDO::PARAM_STR);
+        $req->execute();
+
+        // Reading the rows in the table services
+        while($titleVerification = $req->fetch()) {
+            // If the service already exists, print an error message
+            if($titleVerification['numberTitle'] >= 1) {
+                echo("Le titre de la prestation existe déjà");
+                header('location:'.URL."tarifs/ajouterTarif");
+                exit();
+            }
+            // Create the new service in the database
+            else {
+                $req = $pdo->prepare("INSERT INTO services (title_service, price_service, content_service, id_admin) VALUES (:title, :price, :content, :id_admin)");
+                $req->bindValue(":title", $title, PDO::PARAM_STR);
+                $req->bindValue(":price", $price, PDO::PARAM_STR); // for a float ok
+                $req->bindValue(":content", $content, PDO::PARAM_STR);
+                $req->bindValue(":id_admin", $idAdmin, PDO::PARAM_INT);
+
+                $data = $req->execute();
+                $req->closeCursor();
+
+                if($data > 0) {
+                    $service = new ServiceClass($this->getDb()->lastInsertId(), $title, $price, $content, $idAdmin);
+                    $this->addService($service);
+                    echo ("Le tarif a bien été créé");
+                }
+            }
         }
     }
 

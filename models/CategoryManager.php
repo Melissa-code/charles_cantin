@@ -6,9 +6,9 @@ require_once ("models/class/CategoryClass.php");
 
 class CategoryManager extends ModelClass
 {
-    private array $categories ;
+    private $categories;
 
-    public function addCategory(CategoryClass $category) {
+    public function addCategory(CategoryClass $category): void {
         $this->categories[] = $category;
     }
 

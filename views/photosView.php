@@ -25,10 +25,13 @@
 
     <div class="row h-100">
         <div class="col d-flex justify-content-center align-items-center mb-4">
-            <a href="<?= URL ?>galerie/ajouterPhoto" class="btn btn-sm btn-outline-secondary ">
-                <i class="fa-solid fa-circle-plus"> </i>
-                Ajouter une photo
-            </a>
+                <a href="<?= URL ?>galerie/ajouterPhoto" class="btn btn-sm btn-outline-secondary m-2 pt-2">
+                    <i class="fa-solid fa-circle-plus"> </i>
+                    Ajouter une photo
+                </a>
+                <a href="<?= URL ?>galerie/categories" class="text-decoration-none m-2">
+                    Voir les catégories
+                </a>
         </div>
     </div>
 
@@ -47,12 +50,16 @@
 
                                     <!-- Update a photo -->
                                     <a href="<?= URL ?>galerie/modifierPhoto/<?= $photo->getIdPhoto(); ?>" class="btn btn-sm btn-outline-warning">
-                                        <i class="fa-solid fa-pen"></i>
+                                        <div class="d-flex justify-content-between align-items-center p-1">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </div>
                                     </a>
 
                                     <!-- Delete a photo -->
                                     <button type="submit" class="btn btn-sm btn-outline-danger">
-                                        <i class="fa-solid fa-trash-can"></i>
+                                        <div class="d-flex justify-content-between align-items-center p-1">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </div>
                                     </button>
                                 </form>
                             </div>
