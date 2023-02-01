@@ -1,15 +1,22 @@
 <div class="container services w-100">
 
-    <div class="row ">
-        <div class="col">
-            <h1 class="text-center my-5">Tarifs et prestations</h1>
+    <div class="row">
+        <div class="col d-flex justify-content-center align-items-center">
+            <h1 class="text-center my-5 me-3">Tarifs et prestations</h1>
+            <!-- Button to add a new service & price -->
+
+            <a href="<?= URL?>tarifs/ajouterTarif" class="btn btn-sm btn-dark" >
+                <div class="d-flex justify-content-between align-items-center p-1">
+                    <span><i class="fa-solid fa-circle-plus"></i> Ajouter</span>
+                </div>
+            </a>
         </div>
     </div>
 
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center d-flex justify-content-center flex-wrap">
         <?php foreach ($services as $service) : ?>
             <div class="col">
-                <div class="card mb-4 rounded-3 ">
+                <div class="card mb-4 rounded-3" style="height: 18rem;">
                     <div class="card-header py-3 ">
                         <h2 class="my-0 fw-normal"><?= $service->getTitleService(); ?></h2>
                     </div>
@@ -27,15 +34,7 @@
                         <a href="contact" class="w-100 btn btn-lg btn-custom">Réserver</a>
 
                         <div class="mt-2">
-                            <form action="" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce tarif ?')">
-
-                                <!-- Button to add a new service & price -->
-
-                                <a href="<?= URL?>tarifs/ajouterTarif" class="btn btn-sm btn-outline-secondary">
-                                    <div class="d-flex justify-content-between align-items-center p-1">
-                                        <i class="fa-solid fa-circle-plus"> </i>
-                                    </div>
-                                </a>
+                            <form action="<?= URL ?>tarifs/supprimer/<?= $service->getIdService(); ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce tarif ?')">
 
                                 <!-- Button to update a service -->
                                 <a href="" class="btn btn-sm btn-outline-warning">

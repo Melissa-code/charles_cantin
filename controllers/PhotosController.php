@@ -70,7 +70,6 @@ class PhotosController
     /**
      * Add a new photo
      *
-     * @throws Exception
      */
     public function createValidation() {
         // Secure the user input

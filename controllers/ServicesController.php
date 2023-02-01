@@ -11,6 +11,10 @@ class ServicesController
         $this->serviceManager->getAllServicesDb();
     }
 
+    /**
+     * Generate a page
+     * @param array $data
+     */
     private function generatePage(array $data): void {
         extract($data);
         ob_start();
@@ -74,6 +78,16 @@ class ServicesController
             header("location: ".URL."tarifs");
             exit();
         }
+    }
+
+    /**
+     * Delete a service
+     * @param string $id
+     */
+    public function delete(string $id): void {
+        $this->serviceManager->deleteDb($id);
+        header("location: ".URL."tarifs");
+        exit();
     }
 
 }

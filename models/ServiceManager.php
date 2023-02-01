@@ -33,6 +33,22 @@ class ServiceManager extends ModelClass
     }
 
     /**
+     * Get a service by id
+     *
+     * @param string $id
+     * @return ServiceClass|null
+     */
+    public function getServiceById(string $id): ?ServiceClass
+    {
+        foreach ($this->services as $service) {
+            if ($service->getIdService() === (int)$id) {
+                //var_dump($service);
+                return $service;
+            }
+        }
+    }
+
+    /**
      * Add a new service in the DB
      *
      * @param $title
@@ -76,5 +92,17 @@ class ServiceManager extends ModelClass
         }
     }
 
+    public function deleteDb(string $id): void {
+        $pdo = $this->getDb();
+        $req = $pdo->prepare("DELETE FROM services WHERE id_service = :id");
+        $req->bindValue(":id", (int)$id, PDO::PARAM_INT);
+        $data = $req->execute();
+        $req->closeCursor();
+
+        if($data > 0) {
+            $service = $this->getServiceById($id);
+            unset($service); // Delete $service in the array $services
+        }
+    }
 
 }

@@ -63,6 +63,8 @@ try {
                 $servicesController->create();
             } else if($url[1] === "ajouterTarifValidation") {
                 $servicesController->createValidation();
+            } else if($url[1] === "supprimer") {
+                $servicesController->delete($url[2]);
             }
         break;
         case "contact":
