@@ -29,7 +29,7 @@ class CategoryClass {
         return $this->id_admin;
     }
 
-    public function setIdAdmin(int $id_admin) {
+    public function setIdAdmin(int $id_admin): self {
         $this->id_admin = $id_admin;
         return $this;
     }

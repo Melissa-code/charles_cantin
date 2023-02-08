@@ -9,6 +9,7 @@ class CategoryController {
 
     public function __construct() {
         $this->categoryManager = new CategoryManager();
+        $this->categoryManager->getAllCategoriesDb();
     }
 
     /**
@@ -31,22 +32,35 @@ class CategoryController {
     public function categories(): void
     {
         $categories = $this->categoryManager->getCategories();
-        var_dump($categories);
+        //var_dump($categories);
 
         $admins = 1;
 
-//        $data_page = [
-//            "page_description" => "Liste de toutes les catégories de photos",
-//            "page_title" => "Liste des catégories",
-//            "categories" => $categories,
-//            "admins" => $admins,
-//            "view" => "views/admin/categoriesList.php",
-//        ];
-//        $this->generatePage($data_page);
+        $data_page = [
+            "page_description" => "Liste de toutes les catégories de photos",
+            "page_title" => "Liste des catégories",
+            "categories" => $categories,
+            "admins" => $admins,
+            "view" => "views/admin/categoriesView.php",
+
+        ];
+        $this->generatePage($data_page);
     }
 
+    /**
+     * Display a Create form to add a new category
+     */
+    public function create(): void {
+        $categories = $this->categoryManager->getCategories();
 
-
+        $data_page = [
+            "page_description" => "Ajout d'une nouvelle catégorie",
+            "page_title" => "Ajouter une catégorie",
+            "categories" => $categories,
+            "view" => "views/createCategoryView.php",
+        ];
+        $this->generatePage($data_page);
+    }
 
 
 

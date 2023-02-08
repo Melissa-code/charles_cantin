@@ -50,12 +50,17 @@ try {
             } else if($url[1] === "modifierPhotoValidation") {
                 $photosController->updateValidation();
             }
-            else if($url[1] === "categories") {
+        break;
+
+        case "categories":
+            if(empty($url[1])) {
                 $categoryController->categories();
             } else if($url[1] === "ajouterCategorie") {
-                $photosController->create();
+                $categoryController->create();
             }
+
         break;
+
         case "tarifs":
             if(empty($url[1])) {
                 $servicesController->services();
@@ -70,7 +75,6 @@ try {
             } else if($url[1] === "modifierServiceValidation") {
                 $servicesController->updateValidation();
             }
-
         break;
         case "contact":
             $contactController->contact();

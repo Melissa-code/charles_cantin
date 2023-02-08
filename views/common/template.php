@@ -13,11 +13,12 @@
     <title><?= $page_title ?></title>
 </head>
 
-<body class="">
+<body>
+    <div class="bgimg-1 img-responsive">
     <?php require_once("views/common/header.php"); ?>
 
-        <div class="container">
-            <main>
+        <div class="container-fluid">
+            <main class="main-content">
                 <?php if(!empty($_SESSION['alert'])) : ?>
                     <div class="alert <?= $_SESSION['alert']['type']; ?> alert-dismissible" role="alert">
                         <?= $_SESSION['alert']['message']; ?>
@@ -43,6 +44,8 @@
             $("#delete-btn").attr("href", link); // write the link in the btn
         })
     </script>
+
+    </div>
 </body>
 </html>
 

@@ -4,8 +4,21 @@
 #96939B; gris moyen
 #47555E; gris foncé logo
 #FC814A; orange
+https://coolors.co/palette/000000-ffffff-47555e-f4b942-bf4e30
+#000000
+#ffffff
+#47555e gris logo
+#f4b942 jaune
+#bf4e30 orange
 */
-body {
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
     /*font-family: 'Hind Guntur', sans-serif;*/
     /*font-family: 'Overpass', sans-serif;*/
     /*font-family: 'Questrial', sans-serif;*/
@@ -13,6 +26,7 @@ body {
     font-family: 'Hind Guntur', sans-serif;
     width: 100%;
     height: 100%;
+    margin: 0;
 }
 
 h1, h2, h3 {
@@ -27,6 +41,10 @@ h2{
 h3 {
     font-size: 2rem;
 }
+h4 {
+    font-size: 1em;
+    font-weight: bolder;
+}
 
 a.active {
     background-color : #FC814A;
@@ -34,13 +52,33 @@ a.active {
 }
 
 
-.home {
+/*.image-fullbackground {*/
+/*    background-image: url("../assets/images/home-bg.png");*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    background-size: cover;*/
+/*}*/
+
+.bgimg-1 {
     background-image: url("../assets/images/home-bg.png");
-    background-repeat: no-repeat;
+    height: 100%;
+    position: relative;
+    opacity: 0.8;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    width: 100vw;
-    height: 70vh;
+}
+
+.nav-custom {
+    background-color:#BFBFBF!important;
+    opacity: 0.9;
+    padding: 0 30px;
+}
+
+.home {
+    display: table;
+    width: 100%;
+    height: 100%;
 }
 
 .title-frame {
@@ -80,14 +118,14 @@ a.active {
     height: 70vh;
 }
 
-.contact {
-    background-image: url("../assets/images/home-bg.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100vw;
-    height: 70vh;
-}
+/*.contact {*/
+/*    background-image: url("../assets/images/home-bg.png");*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    background-size: cover;*/
+/*    width: 100vw;*/
+/*    height: 70vh;*/
+/*}*/
 
 .address, .contact-form {
     background-color: #E8E8E8;

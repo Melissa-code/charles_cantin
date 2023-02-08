@@ -6,16 +6,19 @@ require_once ("models/class/CategoryClass.php");
 
 class CategoryManager extends ModelClass
 {
-    private $categories;
+    private ?array $categories;
 
     public function addCategory(CategoryClass $category): void {
         $this->categories[] = $category;
     }
 
-    public function getCategories() {
+    public function getCategories() : ?array {
         return $this->categories;
     }
 
+    /**
+     * Get all the categories from the database
+     */
     public function getAllCategoriesDb() {
         $pdo = $this->getDb();
         $req = $pdo->prepare("SELECT * FROM categories");

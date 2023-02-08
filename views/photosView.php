@@ -29,7 +29,7 @@
                     <i class="fa-solid fa-circle-plus"> </i>
                     Ajouter une photo
                 </a>
-                <a href="<?= URL ?>galerie/categories" class="text-decoration-none m-2">
+                <a href="<?= URL ?>categories" class="text-decoration-none m-2">
                     Voir les catégories
                 </a>
         </div>
@@ -45,7 +45,7 @@
                     <?= $photo->getLegendPhoto(); ?>
                     <div class="card-body d-flex justify-content-center">
                         <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group ">
+                            <div class="btn-group">
                                 <form action="<?= URL ?>galerie/supprimer/<?= $photo->getIdPhoto(); ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?')">
 
                                     <!-- Update a photo -->
