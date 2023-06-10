@@ -1,0 +1,18 @@
+/* Gallery */
+
+.align-btn {
+    display:inline-block;
+    width:45%;
+    margin:10px 2.5% 10px 2.5%;
+    text-align:center;
+}
+
+.imgBg {
+    position: relative;
+}
+
+.img-legend {
+    display: none;
+    position: absolute;
+}
+

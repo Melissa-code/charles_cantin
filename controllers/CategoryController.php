@@ -41,7 +41,7 @@ class CategoryController {
             "page_title" => "Liste des catégories",
             "categories" => $categories,
             "admins" => $admins,
-            "view" => "views/admin/categoriesView.php",
+            "view" => "views/categoriesView.php",
 
         ];
         $this->generatePage($data_page);

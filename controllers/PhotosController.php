@@ -42,12 +42,14 @@ class PhotosController
         $categories = $this->categoryManager->getCategories();
 
         $data_page = [
-            "page_description" => "Galerie des photos prises de Charles Cantin",
+            "page_description" => "Galerie des photos prises par Charles Cantin",
             "page_title" => "Galerie",
             "photos" => $photos,
             "admins" => $admins,
             "categories" => $categories,
             "view" => "views/photosView.php",
+            "page_css" => "photos.css",
+            "page_javascript" => ["photos.js"],
         ];
         $this->generatePage($data_page);
     }
@@ -63,6 +65,7 @@ class PhotosController
             "page_title" => "Ajouter une photo",
             "categories" => $categories,
             "view" => "views/createPhotoView.php",
+            "page_css" => "createForm.css",
         ];
         $this->generatePage($data_page);
     }

@@ -1,13 +1,13 @@
-<div class="home w-100">
-    <div class="row h-100">
-        <div class="col d-flex justify-content-center align-items-center">
-
-            <div class="title-frame rounded p-3">
-                <h1 class="fw-bold home-title ">
+<!-- Main -->
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <!-- Title in the middle of the page -->
+            <div class="title-frame rounded-3 p-4">
+                <h1 class="fw-bold text-light">
                     <?= $admin->getFirstnameAdmin().' '.$admin->getNameAdmin().' - '.$admin->getJobAdmin(); ?>
                 </h1>
             </div>
-
         </div>
     </div>
 </div>

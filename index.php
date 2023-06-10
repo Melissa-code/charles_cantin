@@ -28,7 +28,7 @@ try {
     if(empty($_GET['page'])) {
         $page = "accueil";
     } else {
-        $url = explode("/", filter_var($_GET['page']),FILTER_SANITIZE_URL); //to secure the url
+        $url = explode("/", filter_var($_GET['page']),FILTER_SANITIZE_URL);
         $page = $url[0];
     }
 
@@ -52,13 +52,12 @@ try {
             }
         break;
 
-        case "categories":
+        case "categorie":
             if(empty($url[1])) {
                 $categoryController->categories();
             } else if($url[1] === "ajouterCategorie") {
                 $categoryController->create();
             }
-
         break;
 
         case "tarifs":
