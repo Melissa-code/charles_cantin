@@ -79,7 +79,6 @@ class ServiceManager extends ModelClass
                 $req->bindValue(":price", $price, PDO::PARAM_STR); // for a float ok
                 $req->bindValue(":content", $content, PDO::PARAM_STR);
                 $req->bindValue(":id_admin", $idAdmin, PDO::PARAM_INT);
-
                 $data = $req->execute();
                 $req->closeCursor();
 

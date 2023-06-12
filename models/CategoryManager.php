@@ -29,7 +29,6 @@ class CategoryManager extends ModelClass
         foreach ($data as $category) {
             $c = new CategoryClass($category['id_category'], $category['title_category'], $category['id_admin']);
             $this->addCategory($c);
-            //var_dump($category);
         }
     }
 
@@ -40,17 +39,33 @@ class CategoryManager extends ModelClass
      */
     public function addCategoryDb($title, $idAdmin): void {
         $pdo = $this->getDb();
-        $req = $pdo->prepare("INSERT INTO categories (title_category, id_admin) VALUES (:title, :id_admin)");
+        // Count the duplicate categories in the database
+        $req = $pdo->prepare("SELECT count(*) as numberTitle FROM categories WHERE title_category = :title");
         $req->bindValue(":title", $title, PDO::PARAM_STR);
-        $req->bindValue(":id_admin", $idAdmin, PDO::PARAM_INT);
-        $data = $req->execute();
-        $req->closeCursor();
+        $req->execute();
 
-        // If the category has been created, add it in the categories array
-        if($data > 0) {
-            $category = new CategoryClass($this->getDb()->lastInsertId(), $title, $idAdmin);
-            $this->addCategory($category);
-            echo ("La catégorie a bien été créée");
+        // Reading the rows in the table categories
+        while($titleVerification = $req->fetch()) {
+            // If the service already exists, print an error message
+            if ($titleVerification['numberTitle'] >= 1) {
+                //echo("Cette catégorie existe déjà");
+                header('location:' . URL . "categorie/ajouterCategorie");
+                exit();
+            }
+            // Create the new category in the database
+            else {
+                $req = $pdo->prepare("INSERT INTO categories (title_category, id_admin) VALUES (:title, :id_admin)");
+                $req->bindValue(":title", $title, PDO::PARAM_STR);
+                $req->bindValue(":id_admin", $idAdmin, PDO::PARAM_INT);
+                $data = $req->execute();
+                $req->closeCursor();
+                // If the category has been created, add it in the categories array
+                if ($data > 0) {
+                    $category = new CategoryClass($this->getDb()->lastInsertId(), $title, $idAdmin);
+                    $this->addCategory($category);
+                    echo("La catégorie a bien été créée");
+                }
+            }
         }
     }
 
