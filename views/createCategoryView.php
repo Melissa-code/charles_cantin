@@ -8,7 +8,7 @@
         <!-- Category create form -->
         <div class="col-12 d-flex justify-content-center ">
 
-            <form action="<? URL ?>createCategoryValidation" method="POST" enctype="multipart/form-data" class="border border-secondary rounded p-4 ">
+            <form action="<?= URL ?>categorie/ajouterCategorieValidation" method="POST" class="border border-light rounded-3 p-4 ">
                 <div class="mb-3">
                     <label for="title_category" class="form-label">Libellé : </label>
                     <input type="text" class="form-control" id="title_category" name="title_category" placeholder="Ex: Portrait" required maxlength="50">

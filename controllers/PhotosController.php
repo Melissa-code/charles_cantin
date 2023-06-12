@@ -75,7 +75,7 @@ class PhotosController
      *
      */
     public function createValidation() {
-        // Secure the user input
+        // Secure the input
         $legend_photo = SecurityClass::secureHtml($_POST['legend_photo']);
         $id_admin = 1;
 

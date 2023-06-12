@@ -33,4 +33,25 @@ class CategoryManager extends ModelClass
         }
     }
 
+    /**
+     * Create a new category in the database
+     * @param $title
+     * @param $idAdmin
+     */
+    public function addCategoryDb($title, $idAdmin): void {
+        $pdo = $this->getDb();
+        $req = $pdo->prepare("INSERT INTO categories (title_category, id_admin) VALUES (:title, :id_admin)");
+        $req->bindValue(":title", $title, PDO::PARAM_STR);
+        $req->bindValue(":id_admin", $idAdmin, PDO::PARAM_INT);
+        $data = $req->execute();
+        $req->closeCursor();
+
+        // If the category has been created, add it in the categories array
+        if($data > 0) {
+            $category = new CategoryClass($this->getDb()->lastInsertId(), $title, $idAdmin);
+            $this->addCategory($category);
+            echo ("La catégorie a bien été créée");
+        }
+    }
+
 }

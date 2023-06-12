@@ -33,7 +33,6 @@ class CategoryController {
     {
         $categories = $this->categoryManager->getCategories();
         //var_dump($categories);
-
         $admins = 1;
 
         $data_page = [
@@ -42,7 +41,6 @@ class CategoryController {
             "categories" => $categories,
             "admins" => $admins,
             "view" => "views/categoriesView.php",
-
         ];
         $this->generatePage($data_page);
     }
@@ -51,17 +49,30 @@ class CategoryController {
      * Display a Create form to add a new category
      */
     public function create(): void {
-        $categories = $this->categoryManager->getCategories();
+        $categories= $this->categoryManager->getCategories();
 
         $data_page = [
             "page_description" => "Ajout d'une nouvelle catégorie",
             "page_title" => "Ajouter une catégorie",
             "categories" => $categories,
             "view" => "views/createCategoryView.php",
+            "page_css" => "createForm.css",
         ];
         $this->generatePage($data_page);
     }
 
+    /**
+     * Create a new category
+     */
+    public function createValidation() {
+        $title_category = SecurityClass::secureHtml($_POST['title_category']);
+        $id_admin = 1;
+        //var_dump($title_category);
+
+        $this->categoryManager->addCategoryDb($title_category, $id_admin);
+        //header("location: ".URL."categories/ajouterCategorieValidation");
+        //exit();
+    }
 
 
 

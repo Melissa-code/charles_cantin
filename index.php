@@ -57,6 +57,8 @@ try {
                 $categoryController->categories();
             } else if($url[1] === "ajouterCategorie") {
                 $categoryController->create();
+            } else if($url[1] === "ajouterCategorieValidation") {
+                $categoryController->createValidation();
             }
         break;
 
