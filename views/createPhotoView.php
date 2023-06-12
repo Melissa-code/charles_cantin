@@ -1,7 +1,7 @@
 <!-- Title -->
 
 <section class="row mt-4">
-    <div class="col d-flex justify-content-center align-items-center ">
+    <div class="col d-flex justify-content-center align-items-center">
         <h1 class="me-4">Ajouter une photo</h1>
     </div>
 </section>

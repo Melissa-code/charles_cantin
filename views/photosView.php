@@ -23,7 +23,7 @@
     </div>
     <!-- Categories link -->
     <div class="col-sm-8 col-md-4 col-lg-2 justify-content-start">
-        <a class="btn btn-dark" href="<?= URL ?>categorie" class="text-decoration-none text-light fw-semibold m-2">
+        <a class="btn btn-dark" href="<?= URL ?>categories" class="text-decoration-none text-light fw-semibold m-2">
             Voir les catégories
         </a>
     </div>

@@ -1,6 +1,7 @@
 <?php
-//session_start();
+session_start();
 
+require_once("controllers/MessagesClass.php");
 require_once("controllers/SecurityClass.php");
 require_once("controllers/ErrorController.php");
 require_once ("controllers/HomeController.php");
@@ -52,7 +53,7 @@ try {
             }
         break;
 
-        case "categorie":
+        case "categories":
             if(empty($url[1])) {
                 $categoryController->categories();
             } else if($url[1] === "ajouterCategorie") {

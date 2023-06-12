@@ -50,7 +50,7 @@ class ServicesController
         $data_page = array(
             "page_description" => "Formulaire de création d'un tarif et d'une prestation",
             "page_title" => "Création d'un tarif et prestation",
-            "view" => "views/admin/createServiceView.php"
+            "view" => "views/admin/services/createServiceView.php"
              );
         $this->generatePage($data_page);
     }
@@ -104,7 +104,7 @@ class ServicesController
             "page_description" => "Modification d'un tarif et prestation",
             "page_title" => "Modification d'un tarif et prestation",
             "service" => $service,
-            "view" => "views/admin/updateServiceView.php",
+            "view" => "views/admin/services/updateServiceView.php",
         ];
         $this->generatePage($data_page);
     }

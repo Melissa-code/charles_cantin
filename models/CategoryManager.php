@@ -38,7 +38,9 @@ class CategoryManager extends ModelClass
      * @param $idAdmin
      */
     public function addCategoryDb($title, $idAdmin): void {
+
         $pdo = $this->getDb();
+
         // Count the duplicate categories in the database
         $req = $pdo->prepare("SELECT count(*) as numberTitle FROM categories WHERE title_category = :title");
         $req->bindValue(":title", $title, PDO::PARAM_STR);
@@ -48,8 +50,8 @@ class CategoryManager extends ModelClass
         while($titleVerification = $req->fetch()) {
             // If the service already exists, print an error message
             if ($titleVerification['numberTitle'] >= 1) {
-                //echo("Cette catégorie existe déjà");
-                header('location:' . URL . "categorie/ajouterCategorie");
+                MessagesClass::alertMsg("Cette catégorie existe déjà.", MessagesClass::RED_COLOR);
+                header('location:' . URL . "categories/ajouterCategorie");
                 exit();
             }
             // Create the new category in the database
@@ -59,11 +61,11 @@ class CategoryManager extends ModelClass
                 $req->bindValue(":id_admin", $idAdmin, PDO::PARAM_INT);
                 $data = $req->execute();
                 $req->closeCursor();
+
                 // If the category has been created, add it in the categories array
                 if ($data > 0) {
                     $category = new CategoryClass($this->getDb()->lastInsertId(), $title, $idAdmin);
                     $this->addCategory($category);
-                    echo("La catégorie a bien été créée");
                 }
             }
         }

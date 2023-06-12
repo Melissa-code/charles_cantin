@@ -55,7 +55,7 @@ class CategoryController {
             "page_description" => "Ajout d'une nouvelle catégorie",
             "page_title" => "Ajouter une catégorie",
             "categories" => $categories,
-            "view" => "views/createCategoryView.php",
+            "view" => "views/admin/categories/createCategoryView.php",
             "page_css" => "createForm.css",
         ];
         $this->generatePage($data_page);
@@ -65,16 +65,21 @@ class CategoryController {
      * Create a new category
      */
     public function createValidation() {
-        $title_category = SecurityClass::secureHtml($_POST['title_category']);
+        $title_category = $_POST['title_category'];
         $id_admin = 1;
-        //var_dump($title_category);
 
-        $this->categoryManager->addCategoryDb($title_category, $id_admin);
-        //header("location: ".URL."categories/ajouterCategorieValidation");
-        //exit();
+        if($title_category === "" || strlen($title_category) >= 30) {
+            MessagesClass::alertMsg("Titre de la catégorie mal renseigné. Réessayer.", MessagesClass::RED_COLOR);
+            header("location: ".URL."categories/ajouterCategorie");
+            exit();
+        } else {
+            $title_category = SecurityClass::secureHtml($title_category);
+            $this->categoryManager->addCategoryDb($title_category, $id_admin);
+            MessagesClass::alertMsg("La catégorie a bien été créée.", MessagesClass::GREEN_COLOR);
+            header("location: ".URL."categories");
+            exit();
+        }
     }
-
-
 
 
 }

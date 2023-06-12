@@ -25,15 +25,20 @@
     <div class="container-fluid">
         <main class="main-content">
             <!-- Alert message -->
-            <?php if(!empty($_SESSION['alert'])) : ?>
-                <div class="alert <?= $_SESSION['alert']['type']; ?> alert-dismissible" role="alert">
-                    <?= $_SESSION['alert']['message']; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-5 fw-semibold">
+                    <?php
+                    if(!empty($_SESSION['alert'])) {
+                        foreach($_SESSION['alert'] as $alert){
+                            echo "<div class='alert alert-dismissible ". $alert['type'] ."' role='alert'>
+                                    ".$alert['message']." <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                           </div>";
+                        }
+                        unset($_SESSION['alert']);
+                    }
+                    ?>
                 </div>
-            <?php
-                unset($_SESSION);
-                endif;
-            ?>
+            </div>
             <!-- Page content -->
             <?= $page_content; ?>
         </main>

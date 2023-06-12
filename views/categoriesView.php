@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12 d-flex justify-content-center align-items-center">
                 <h1 class="text-center">Liste des catégories</h1>
-                <a href="<?= URL ?>categorie/ajouterCategorie" class="btn btn-sm btn-outline-secondary m-2 pt-2">
+                <a href="<?= URL ?>categories/ajouterCategorie" class="btn btn-sm btn-custom m-2 pt-2">
                     <i class="fa-solid fa-circle-plus"> </i>
                     Ajouter une catégorie
                 </a>

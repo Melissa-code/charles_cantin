@@ -20,6 +20,4 @@ class ErrorController
         $this->generatePage($data_page);
     }
 
-
-
 }
