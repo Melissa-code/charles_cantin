@@ -14,7 +14,7 @@
             <i class="fa-solid fa-backward" style="color: #ffffff;"></i>
             Revenir
         </a>
-        <a href="<?= URL ?>galerie/ajouterPhoto" class="btn btn-sm btn-custom w-100 border border-light rounded-0 mb-2">
+        <a href="<?= URL ?>categories/ajouterCategorie" class="btn btn-sm btn-custom w-100 border border-light rounded-0 mb-2">
             <i class="fa-solid fa-circle-plus"></i>
             Ajouter une catégorie
         </a>

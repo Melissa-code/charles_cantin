@@ -30,7 +30,7 @@
                     <?php
                     if(!empty($_SESSION['alert'])) {
                         foreach($_SESSION['alert'] as $alert){
-                            echo "<div class='alert alert-dismissible ". $alert['type'] ."' role='alert'>
+                            echo "<div class='mt-2 alert alert-dismissible ". $alert['type'] ."' role='alert'>
                                     ".$alert['message']." <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                            </div>";
                         }

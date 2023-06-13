@@ -111,20 +111,36 @@ class CategoryManager extends ModelClass
      */
     public function updateCategoryDb(string $oldId_category, string $title_category, int $id_admin): void {
         $pdo = $this->getDb();
-        $req = $pdo->prepare("UPDATE categories SET title_category = :title, id_admin = :idAdmin WHERE id_category = :oldId");
-        $req->bindValue('oldId', (int)$oldId_category, PDO::PARAM_INT);
-        $req->bindValue('title', $title_category, PDO::PARAM_STR);
-        $req->bindValue('idAdmin', $id_admin, PDO::PARAM_INT);
-        $data = $req->execute();
-        $req->closeCursor();
 
-        // Update the category object
-        if($data > 0) {
-            $this->getCategoryById($oldId_category)
-                ->setTitleCategory($title_category)
-                ->setIdAdmin($id_admin);
+        // Count the duplicate titles of a category
+        $req = $pdo->prepare("SELECT count(*) AS numberTitle FROM categories WHERE title_category = :title");
+        $req->bindValue("title", $title_category, PDO::PARAM_STR);
+        $req->execute();
+
+        // Read the rows in the categories table
+        while($titleVerification = $req->fetch()) {
+            if($titleVerification['numberTitle'] >= 1) {
+                MessagesClass::alertMsg("Cette catégorie existe déjà.", MessagesClass::RED_COLOR);
+                header('location:' . URL . "categories/modifier/".$oldId_category);
+                exit();
+            }
+            else {
+                // Update the category in the database
+                $req = $pdo->prepare("UPDATE categories SET title_category = :title, id_admin = :idAdmin WHERE id_category = :oldId");
+                $req->bindValue('oldId', (int)$oldId_category, PDO::PARAM_INT);
+                $req->bindValue('title', $title_category, PDO::PARAM_STR);
+                $req->bindValue('idAdmin', $id_admin, PDO::PARAM_INT);
+                $data = $req->execute();
+                $req->closeCursor();
+            }
+
+            // Update the category object
+            if($data > 0) {
+                $this->getCategoryById($oldId_category)
+                    ->setTitleCategory($title_category)
+                    ->setIdAdmin($id_admin);
+            }
         }
     }
-
 
 }

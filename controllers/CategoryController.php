@@ -113,16 +113,18 @@ class CategoryController {
      */
     public function updateValidation(): void {
         $title_category = SecurityClass::secureHtml($_POST['title_category']);
+        $oldId_category = SecurityClass::secureHtml($_POST['oldId_category']);
         $id_admin = 1;
 
-        // Add constraints to validate the updating form
+        // Add constraints to validate the user data
         if($title_category === "" || strlen($title_category) >= 30) {
             MessagesClass::alertMsg("Titre de la catégorie mal renseigné. Réessayer.", MessagesClass::RED_COLOR);
-            header("location: ".URL."categories/modifier/".$_POST['oldId_category']);
+            header("location: ".URL."categories/modifier/".$oldId_category);
             exit();
         } else {
-            $this->categoryManager->updateCategoryDb($_POST['oldId_category'], $title_category, $id_admin);
-            header("location: " . URL . "categories");
+            $this->categoryManager->updateCategoryDb($oldId_category, $title_category, $id_admin);
+            MessagesClass::alertMsg("La catégorie a bien été modifiée.", MessagesClass::GREEN_COLOR);
+            header("location: ".URL."categories");
             exit();
         }
     }
