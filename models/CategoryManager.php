@@ -103,4 +103,28 @@ class CategoryManager extends ModelClass
         }
     }
 
+    /**
+     * Update a category in the database
+     * @param string $oldId_category
+     * @param string $title_category
+     * @param int $id_admin
+     */
+    public function updateCategoryDb(string $oldId_category, string $title_category, int $id_admin): void {
+        $pdo = $this->getDb();
+        $req = $pdo->prepare("UPDATE categories SET title_category = :title, id_admin = :idAdmin WHERE id_category = :oldId");
+        $req->bindValue('oldId', (int)$oldId_category, PDO::PARAM_INT);
+        $req->bindValue('title', $title_category, PDO::PARAM_STR);
+        $req->bindValue('idAdmin', $id_admin, PDO::PARAM_INT);
+        $data = $req->execute();
+        $req->closeCursor();
+
+        // Update the category object
+        if($data > 0) {
+            $this->getCategoryById($oldId_category)
+                ->setTitleCategory($title_category)
+                ->setIdAdmin($id_admin);
+        }
+    }
+
+
 }

@@ -20,8 +20,10 @@
                 <div class="col mb-3 ">
                     <a href="<?= URL ?>categories" class="btn btn-dark">Revenir</a>
                 </div>
-                <!-- submit button -->
                 <div class="col mb-3">
+                    <!-- old id category -->
+                    <input type="hidden" name="oldId_category" value="<?= $category->getIdCategory(); ?>">
+                    <!-- submit button -->
                     <button type="submit" class="btn btn-custom">Modifier</button>
                 </div>
             </div>

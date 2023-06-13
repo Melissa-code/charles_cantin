@@ -91,6 +91,10 @@ class CategoryController {
         exit();
     }
 
+    /**
+     * Display a category updating form
+     * @param string $id
+     */
     public function update(string $id) : void {
         $category = $this->categoryManager->getCategoryById($id);
 
@@ -102,6 +106,19 @@ class CategoryController {
             "page_css" => "createForm.css"
         ];
         $this->generatePage($data_page);
+    }
+
+    /**
+     * Update a category
+     */
+    public function updateValidation(): void {
+        $title_category = SecurityClass::secureHtml($_POST['title_category']);
+        $id_admin = 1;
+
+        $this->categoryManager->updateCategoryDb($_POST['oldId_category'], $title_category, $id_admin);
+        header("location: ".URL."categories");
+        exit();
+
     }
 
 }
