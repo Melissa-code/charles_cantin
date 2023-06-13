@@ -32,7 +32,6 @@ class CategoryController {
     public function categories(): void
     {
         $categories = $this->categoryManager->getCategories();
-        //var_dump($categories);
         $admins = 1;
 
         $data_page = [
@@ -41,6 +40,7 @@ class CategoryController {
             "categories" => $categories,
             "admins" => $admins,
             "view" => "views/categoriesView.php",
+            "page_css" => "list.css",
         ];
         $this->generatePage($data_page);
     }
@@ -79,6 +79,16 @@ class CategoryController {
             header("location: ".URL."categories");
             exit();
         }
+    }
+
+    /**
+     * Delete a category
+     * @param string $id
+     */
+    public function delete(string $id): void {
+        $this->categoryManager->deleteDb($id);
+        header("location: ".URL."categories");
+        exit();
     }
 
 

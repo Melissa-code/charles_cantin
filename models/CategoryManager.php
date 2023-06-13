@@ -19,7 +19,7 @@ class CategoryManager extends ModelClass
     /**
      * Get all the categories from the database
      */
-    public function getAllCategoriesDb() {
+    public function getAllCategoriesDb(): void {
         $pdo = $this->getDb();
         $req = $pdo->prepare("SELECT * FROM categories");
         $req->execute();
@@ -29,6 +29,20 @@ class CategoryManager extends ModelClass
         foreach ($data as $category) {
             $c = new CategoryClass($category['id_category'], $category['title_category'], $category['id_admin']);
             $this->addCategory($c);
+        }
+    }
+
+    /**
+     * Get a category by id
+     * @param string $id
+     * @return CategoryClass|null
+     */
+    public function getCategoryById(string $id): ?CategoryClass {
+        foreach($this->categories as $category) {
+            if($category->getIdCategory() === (int)$id) {
+                //var_dump($category);
+                return $category;
+            }
         }
     }
 
@@ -68,6 +82,20 @@ class CategoryManager extends ModelClass
                     $this->addCategory($category);
                 }
             }
+        }
+        $req->closeCursor();
+    }
+
+    public function deleteDb(string $id): void {
+        $pdo = $this->getDb();
+        $req = $pdo->prepare('DELETE FROM categories WHERE id_category = :id');
+        $req->bindValue('id', (int)$id, PDO::PARAM_INT);
+        $data = $req->execute();
+        $req->closeCursor();
+
+        if($data > 0) {
+            $category = $this->getCategoryById($id);
+            unset($category);
         }
     }
 

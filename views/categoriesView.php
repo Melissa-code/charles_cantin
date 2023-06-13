@@ -1,55 +1,65 @@
-<div class="container categories w-100">
+<!-- Title -->
 
-    <div class="row">
+<section class="row mt-4">
+    <div class="col-12 d-flex justify-content-center">
+        <h1 class="text-center">Liste des catégories</h1>
+    </div>
+</section>
 
-        <!-- Page title -->
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center align-items-center">
-                <h1 class="text-center">Liste des catégories</h1>
-                <a href="<?= URL ?>categories/ajouterCategorie" class="btn btn-sm btn-custom m-2 pt-2">
-                    <i class="fa-solid fa-circle-plus"> </i>
-                    Ajouter une catégorie
-                </a>
-            </div>
-        </div>
+<!-- Back or Add a category -->
 
-        <div class="col-12 d-flex justify-content-center flex-wrap text-center">
+<section class="row d-flex justify-content-center pt-4">
+    <div class="col-md-10 d-flex justify-content-center">
+        <a href="<?= URL ?>galerie" class="btn btn-sm btn-dark w-100 border border-light rounded-0 mb-2">
+            <i class="fa-solid fa-backward" style="color: #ffffff;"></i>
+            Revenir
+        </a>
+        <a href="<?= URL ?>galerie/ajouterPhoto" class="btn btn-sm btn-custom w-100 border border-light rounded-0 mb-2">
+            <i class="fa-solid fa-circle-plus"></i>
+            Ajouter une catégorie
+        </a>
+    </div>
+</section>
+
+<!-- Categories cards -->
+
+<section class="row d-flex justify-content-center pb-4">
+    <div class="col-md-11">
+        <div class="row d-flex justify-content-center">
             <?php foreach($categories as $category): ?>
-                <div class="card m-2" style="width:15rem; ">
+                <div class="card card-custom border border-light rounded-0 text-light m-2" style="width:15rem; ">
                     <div class="card-body">
-                        <h4 class="card-body"><?= $category->getTitleCategory(); ?></h4>
+                        <!-- Card title -->
+                        <h4 class="card-body text-center"><?= $category->getTitleCategory(); ?></h4>
 
-                        <div class="btn-group">
-                            <form action="" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?')">
-
-                                <!-- Update a photo -->
-                                <a href="" class="btn btn-sm btn-outline-warning">
-                                    <div class="d-flex justify-content-between align-items-center p-1">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </div>
+                        <div class="row d-flex align-items-center mx-0">
+                            <!-- Update a category -->
+                            <div class="col-md-6 gx-0">
+                                <a href="" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
+                                    <i class="fa-solid fa-pen"></i>
                                 </a>
-
-                                <!-- Delete a photo -->
-                                <button type="submit" class="btn btn-sm btn-outline-danger">
-                                    <div class="d-flex justify-content-between align-items-center p-1">
+                            </div>
+                            <div class="col-md-6 gx-0">
+                                <!-- Delete a category -->
+                                <form action=<?= URL ?>categories/supprimer/<?= $category->getIdCategory(); ?> method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette categorie ?')">
+                                    <button type="submit" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
                                         <i class="fa-solid fa-trash-can"></i>
-                                    </div>
-                                </button>
-                            </form>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-
                     </div>
                 </div>
 
             <?php endforeach; ?>
         </div>
-
     </div>
-</div>
+</section>
 
 
 
-</div>
+
+
 
 
 

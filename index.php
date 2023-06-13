@@ -60,6 +60,8 @@ try {
                 $categoryController->create();
             } else if($url[1] === "ajouterCategorieValidation") {
                 $categoryController->createValidation();
+            } else if($url[1] === "supprimer") {
+                $categoryController->delete($url[2]);
             }
         break;
 
