@@ -86,6 +86,10 @@ class CategoryManager extends ModelClass
         $req->closeCursor();
     }
 
+    /**
+     * Delete a category in the database
+     * @param string $id
+     */
     public function deleteDb(string $id): void {
         $pdo = $this->getDb();
         $req = $pdo->prepare('DELETE FROM categories WHERE id_category = :id');

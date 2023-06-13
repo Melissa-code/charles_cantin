@@ -62,8 +62,10 @@ try {
                 $categoryController->createValidation();
             } else if($url[1] === "supprimer") {
                 $categoryController->delete($url[2]);
+            } else if($url[1] === "modifier") {
+                $categoryController->update($url[2]);
             }
-        break;
+            break;
 
         case "tarifs":
             if(empty($url[1])) {

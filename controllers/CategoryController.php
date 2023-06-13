@@ -91,6 +91,18 @@ class CategoryController {
         exit();
     }
 
+    public function update(string $id) : void {
+        $category = $this->categoryManager->getCategoryById($id);
+
+        $data_page = [
+            "page_description" => "Modification d'une catégorie",
+            "page_title" => "Modifier une catégorie",
+            "category" => $category,
+            "view" => "views/admin/categories/updateCategoryView.php",
+            "page_css" => "createForm.css"
+        ];
+        $this->generatePage($data_page);
+    }
 
 }
 

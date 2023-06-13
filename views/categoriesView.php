@@ -31,17 +31,16 @@
                     <div class="card-body">
                         <!-- Card title -->
                         <h4 class="card-body text-center"><?= $category->getTitleCategory(); ?></h4>
-
                         <div class="row d-flex align-items-center mx-0">
                             <!-- Update a category -->
                             <div class="col-md-6 gx-0">
-                                <a href="" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
+                                <a href="<?= URL ?>categories/modifier/<?= $category->getIdCategory(); ?>" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                             </div>
                             <div class="col-md-6 gx-0">
                                 <!-- Delete a category -->
-                                <form action=<?= URL ?>categories/supprimer/<?= $category->getIdCategory(); ?> method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette categorie ?')">
+                                <form action="<?= URL ?>categories/supprimer/<?= $category->getIdCategory(); ?>" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette categorie ?')">
                                     <button type="submit" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
@@ -50,7 +49,6 @@
                         </div>
                     </div>
                 </div>
-
             <?php endforeach; ?>
         </div>
     </div>
