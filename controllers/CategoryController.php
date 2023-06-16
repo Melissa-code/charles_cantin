@@ -56,7 +56,7 @@ class CategoryController {
             "page_title" => "Ajouter une catégorie",
             "categories" => $categories,
             "view" => "views/admin/categories/createCategoryView.php",
-            "page_css" => "createForm.css",
+            "page_css" => "form.css",
         ];
         $this->generatePage($data_page);
     }
@@ -103,7 +103,7 @@ class CategoryController {
             "page_title" => "Modifier une catégorie",
             "category" => $category,
             "view" => "views/admin/categories/updateCategoryView.php",
-            "page_css" => "createForm.css"
+            "page_css" => "form.css"
         ];
         $this->generatePage($data_page);
     }

@@ -118,22 +118,40 @@ class PhotoManager extends ModelClass
      */
     public function updatePhotoDb(?string $oldId, ?string $legend, ?string $image, ?string $id_category, ?int $id_admin) {
         $pdo = $this->getDb();
-        $req = $pdo->prepare("UPDATE photos SET legend_photo = :legend, image_photo = :image, id_category = :id_category, id_admin = :id_admin WHERE id_photo = :oldId");
-        $req->bindValue(":oldId", (int)$oldId, PDO::PARAM_INT);
-        $req->bindValue(":legend", $legend, PDO::PARAM_STR);
-        $req->bindValue(":image", $image, PDO::PARAM_STR);
-        $req->bindValue(":id_category", (int)$id_category, PDO::PARAM_INT);
-        $req->bindValue(":id_admin", $id_admin, PDO::PARAM_INT);
-        $data = $req->execute();
-        $req->closeCursor();
 
-        // Update the photo object
-        if($data > 0) {
-            $this->getPhotoById($oldId)
-                ->setLegendPhoto($legend)
-                ->setImagePhoto($image)
-                ->setIdCategory($id_category)
-                ->setIdAdmin($id_admin);
+        // Count the duplicate photos in the database
+        $req = $pdo->prepare("SELECT count(*) as numberLegend FROM photos WHERE legend_photo = :legend");
+        $req->bindValue(":legend", $legend, PDO::PARAM_STR);
+        $req->execute();
+
+        // Reading the rows of the table
+        while($legendVerification = $req->fetch()) {
+            // If the photos already exists, print an error message
+            if($legendVerification['numberLegend'] >= 1) {
+                MessagesClass::alertMsg("Cette photo existe déjà.", MessagesClass::RED_COLOR);
+                header('location:'.URL."galerie/modifierPhoto/".$oldId);
+                exit();
+            }
+            // Create the new photo in the database
+            else {
+                $req = $pdo->prepare("UPDATE photos SET legend_photo = :legend, image_photo = :image, id_category = :id_category, id_admin = :id_admin WHERE id_photo = :oldId");
+                $req->bindValue(":oldId", (int)$oldId, PDO::PARAM_INT);
+                $req->bindValue(":legend", $legend, PDO::PARAM_STR);
+                $req->bindValue(":image", $image, PDO::PARAM_STR);
+                $req->bindValue(":id_category", (int)$id_category, PDO::PARAM_INT);
+                $req->bindValue(":id_admin", $id_admin, PDO::PARAM_INT);
+                $data = $req->execute();
+                $req->closeCursor();
+
+                // Update the photo object
+                if ($data > 0) {
+                    $this->getPhotoById($oldId)
+                        ->setLegendPhoto($legend)
+                        ->setImagePhoto($image)
+                        ->setIdCategory($id_category)
+                        ->setIdAdmin($id_admin);
+                }
+            }
         }
     }
 

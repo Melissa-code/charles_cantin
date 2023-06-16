@@ -93,6 +93,20 @@ h4 {
     border: 1px solid #FFFFFF;
 }
 
+.btn-back {
+    background-color: #96939B;
+    color: #FFFFFF;
+}
+
+.btn-back:hover {
+    background-color: #fc814a;
+    opacity: 0.8;
+    color: white;
+}
+
+.fa-brands {
+    color: #FFFFFF;
+}
 
 
 

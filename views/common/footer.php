@@ -11,9 +11,9 @@
         </div>
         <!-- Social media -->
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a href="#" target="_blank"><i class="fa-brands fa-xl fa-twitter" style="color: #FFFFFF"></i></a></li>
-            <li class="ms-3"><a href="#" target="_blank"><i class="fa-brands fa-xl fa-instagram" style="color: #FFFFFF"></i></a></li>
-            <li class="ms-3"><a href="#" target="_blank"><i class="fa-brands fa-xl fa-facebook" style="color: #FFFFFF"></i></a></li>
+            <li class="ms-3"><a href="#" target="_blank"><i class="fa-brands fa-xl fa-twitter" ></i></a></li>
+            <li class="ms-3"><a href="#" target="_blank"><i class="fa-brands fa-xl fa-instagram" ></i></a></li>
+            <li class="ms-3"><a href="#" target="_blank"><i class="fa-brands fa-xl fa-facebook" ></i></a></li>
         </ul>
     </footer>
 </div>

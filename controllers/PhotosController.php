@@ -64,8 +64,8 @@ class PhotosController
             "page_description" => "Ajout d'une photo",
             "page_title" => "Ajouter une photo",
             "categories" => $categories,
-            "view" => "views/createPhotoView.php",
-            "page_css" => "createForm.css",
+            "view" => "views/admin/photos/createPhotoView.php",
+            "page_css" => "form.css",
         ];
         $this->generatePage($data_page);
     }
@@ -85,7 +85,7 @@ class PhotosController
             exit();
         } else {
             $file = $_FILES['image_photo'];
-            $directory = "public/assets/images/uploads/"; //ADD
+            $directory = "public/assets/images/uploads/";
             $image_photo = $this->addImage($file, $directory);
             $this->photoManager->addPhotoDb($legend_photo, $image_photo, $id_admin, $_POST['id_category']);
             MessagesClass::alertMsg("La photo a bien été créée.", MessagesClass::GREEN_COLOR);
@@ -159,8 +159,8 @@ class PhotosController
             "page_title" => "Modfification une photo",
             "photo" => $photo,
             "categories" => $categories,
-            "view" => "views/updatePhotoView.php",
-            //"view" => "views/admin/updatePhoto.php",
+            "view" => "views/admin/photos/updatePhotoView.php",
+            "page_css" => "form.css"
         ];
         $this->generatePage($data_page);
     }
@@ -196,6 +196,7 @@ class PhotosController
             }
 
             $this->photoManager->updatePhotoDb($_POST['oldId_photo'], $legend_photo, $image_photo, $_POST['id_category'], $id_admin);
+            MessagesClass::alertMsg("La photo a bien été modifiée.", MessagesClass::GREEN_COLOR);
             header("location: ".URL."galerie");
             exit();
         }
