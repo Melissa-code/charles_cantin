@@ -15,6 +15,7 @@ class ContactController
         $data_page = [
             "page_description" => "Formulaire de contact pour joindre Charles Cantin photographe",
             "page_title" => "Contact",
+            "page_css" => "contact.css",
         ];
         $this->generatePage($data_page);
     }

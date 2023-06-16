@@ -79,8 +79,8 @@ class PhotosController
         $legend_photo = SecurityClass::secureHtml($_POST['legend_photo']);
         $id_admin = 1;
 
-        if(strlen($legend_photo) < 50) {
-            //echo "Légende de photo mal renseignée. Réessayer";
+        if(strlen($legend_photo) >= 50) {
+            MessagesClass::alertMsg("Légende de photo mal renseignée.", MessagesClass::RED_COLOR);
             header("location: ".URL."galerie");
             exit();
         } else {
@@ -88,6 +88,7 @@ class PhotosController
             $directory = "public/assets/images/";
             $image_photo = $this->addImage($file, $directory);
             $this->photoManager->addPhotoDb($legend_photo, $image_photo, $id_admin, $_POST['id_category']);
+            MessagesClass::alertMsg("La photo a bien été créée.", MessagesClass::GREEN_COLOR);
             header("location: ".URL."galerie");
             exit();
         }
@@ -139,6 +140,7 @@ class PhotosController
         $imageName = $this->photoManager->getPhotoById($id)->getImagePhoto();
         unlink("public/assets/images/".$imageName); // Delete the image file
         $this->photoManager->deleteDb($id);
+        MessagesClass::alertMsg("La photo a bien été supprimée.", MessagesClass::GREEN_COLOR);
         header("location: ".URL."galerie");
         exit();
     }
@@ -165,26 +167,28 @@ class PhotosController
 
     /**
      * Update a photo
+     * @param string $id
+     * @throws Exception
      */
     public function updateValidation(): void {
         // Secure the user input
         $legend_photo = SecurityClass::secureHtml($_POST['legend_photo']);
         $id_admin = 1;
 
-        if(strlen($legend_photo) < 50) {
+        if(strlen($legend_photo) >= 50) {
             //echo "Légende de photo trop longue. Réessayer";
             header("location: ".URL."galerie");
             exit();
         }
         else {
-            $oldImage = $this->photoManager->getPhotoById($_POST['oldId_photo'])->getImagePhoto();
+            $oldImage = $this->photoManager->getPhotoById(SecurityClass::secureHtml($_POST['oldId_photo']))->getImagePhoto();
             $file = $_FILES['image_photo'];
 
             // if the admin is changing the image file
             if($file['size'] > 0) {
                 // remove the old image
                 unlink("public/assets/images/".$oldImage);
-                // add a new image file
+                // add the new image file
                 $directory = "public/assets/images/";
                 $image_photo = $this->addImage($file, $directory);
             } else {

@@ -38,7 +38,8 @@ class ServicesController
             "page_title" => "Tarifs et prestations",
             "view" => "views/servicesView.php",
             "services" => $dataServices,
-            "service" => $service
+            "service" => $service,
+            "page_css" => "services.css",
         );
         $this->generatePage($data_page);
     }

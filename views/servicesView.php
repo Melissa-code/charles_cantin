@@ -1,62 +1,59 @@
-<div class="container services w-100">
+<!-- Title -->
 
-    <div class="row">
-        <div class="col d-flex justify-content-center align-items-center">
-            <h1 class="text-center my-5 me-3">Tarifs et prestations</h1>
-            <!-- Button to add a new service & price -->
+<section class="row d-flex justify-content-center my-4">
+     <div class="col-12">
+         <div class="row d-flex justify-content-center">
+             <div class="col-md-4 d-flex justify-content-center title-frame p-2">
+                 <h1 class="text-center">Tarifs et prestations</h1>
+             </div>
+         </div>
+     </div>
+</section>
 
-            <a href="<?= URL?>tarifs/ajouterTarif" class="btn btn-sm btn-dark" >
-                <div class="d-flex justify-content-between align-items-center p-1">
-                    <span><i class="fa-solid fa-circle-plus"></i> Ajouter</span>
-                </div>
-            </a>
-        </div>
+<!-- Add a new service & price -->
+
+<section class="row d-flex justify-content-center">
+    <div class="col-md-9 d-flex justify-content-center">
+        <a href="<?= URL?>tarifs/ajouterTarif" class="btn btn-sm btn-custom w-100 border border-light rounded-0 mb-2">
+            <i class="fa-solid fa-circle-plus"></i>
+            Ajouter un tarif
+        </a>
     </div>
+</section>
 
-    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center d-flex justify-content-center flex-wrap">
-        <?php foreach ($services as $service) : ?>
-            <div class="col">
-                <div class="card mb-4 rounded-3" >
-                    <div class="card-header py-3 ">
-                        <h2 class="my-0 fw-normal"><?= $service->getTitleService(); ?></h2>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title pricing-card-title fw-bold">
-                            <?php if($service->getPriceService()) {
-                                 echo $service->getPriceService(). "€";
-                            } else {
-                                echo "Sur devis";
-                            } ?>
-                        </h3>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li><?= $service->getContentService(); ?></li>
-                        </ul>
-                        <a href="contact" class="w-100 btn btn-lg btn-custom">Réserver</a>
+<!-- Cards of prices -->
 
-                        <div class="mt-2">
-                            <form action="<?= URL ?>tarifs/supprimer/<?= $service->getIdService(); ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce tarif ?')">
-
-                                <!-- Button to update a service -->
-                                <a href="<?= URL ?>tarifs/modifier/<?= $service->getIdService(); ?>" class="btn btn-sm btn-warning">
-                                    <div class="d-flex justify-content-between align-items-center p-1">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </div>
-                                </a>
-
-                                <!-- Button to delete a service -->
-                                <button type="submit" class="btn btn-sm btn-danger">
-                                    <div class="d-flex justify-content-between align-items-center p-1">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </div>
-                                </button>
-                            </form>
-                        </div>
-
-                    </div>
+<section class="row m-2 d-flex justify-content-center flex-wrap">
+    <?php foreach ($services as $service): ?>
+        <article class="col-md-3 card border border-light m-3 rounded-0 price-card text-light">
+            <div class="card-body">
+                <h2 class="card-title"><?= $service->getTitleService() ?></h2>
+                <hr>
+                <h3 class="price-title"><?php if($service->getPriceService()) {
+                        echo $service->getPriceService(). "€";
+                    } else {
+                        echo "Sur devis";
+                    } ?>
+                </h3>
+                <p class="card-text"><?= $service->getContentService(); ?></p>
+            </div>
+            <!-- Buttons -->
+            <div class="row d-flex align-items-center">
+                <!-- Update a service -->
+                <div class="col-md-6 gx-0">
+                    <a href="<?= URL ?>tarifs/modifier/<?= $service->getIdService(); ?>" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+                </div>
+                <div class="col-md-6 gx-0">
+                    <!-- Delete a service -->
+                    <form class="" action="<?= URL ?>tarifs/supprimer/<?= $service->getIdService(); ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?')">
+                        <button type="submit" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
-        <?php endforeach; ?>
-
-    </div>
-</div>
-
+        </article>
+    <?php endforeach; ?>
+</section>

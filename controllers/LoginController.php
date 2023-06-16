@@ -20,6 +20,7 @@ class LoginController
         $data_page = [
             "page_description" => "Formulaire de connexion",
             "page_title" => "Connexion",
+            "page_css" => "login.css",
         ];
         $this->generatePage($data_page);
     }

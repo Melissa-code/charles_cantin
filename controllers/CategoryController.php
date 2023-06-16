@@ -39,8 +39,8 @@ class CategoryController {
             "page_title" => "Liste des catégories",
             "categories" => $categories,
             "admins" => $admins,
-            "view" => "views/categoriesView.php",
-            "page_css" => "list.css",
+            "view" => "views/admin/categories/categoriesView.php",
+            "page_css" => "categories.css",
         ];
         $this->generatePage($data_page);
     }
@@ -69,7 +69,7 @@ class CategoryController {
         $id_admin = 1;
 
         if($title_category === "" || strlen($title_category) >= 30) {
-            MessagesClass::alertMsg("Titre de la catégorie mal renseigné. Réessayer.", MessagesClass::RED_COLOR);
+            MessagesClass::alertMsg("Titre de la catégorie mal renseigné.", MessagesClass::RED_COLOR);
             header("location: ".URL."categories/ajouterCategorie");
             exit();
         } else {

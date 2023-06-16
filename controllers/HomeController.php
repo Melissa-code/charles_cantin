@@ -19,23 +19,22 @@ class HomeController
         require_once("views/common/template.php");
     }
 
+    /**
+     * Home
+     */
     public function home(): void {
         $dataAdmins = $this->homeManager->getAdmins();
-        //var_dump($dataAdmins);
         foreach($dataAdmins as $oneAdmin) {
             $admin = $oneAdmin;
-            //var_dump($admin);
         }
 
         $data_page = [
             "page_description" => "Portfolio de Charles Cantin photographe",
             "page_title" => "Accueil",
             "admin" => $admin,
+            "page_css" => "home.css",
         ];
         $this->generatePage($data_page);
     }
-
-
-
 
 }

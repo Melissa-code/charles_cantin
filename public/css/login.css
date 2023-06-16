@@ -1,0 +1,19 @@
+/* Login */
+
+html, body {
+    margin: 0;
+    background-image: url("../assets/images/login-bg.png");
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-form {
+    background-color: #BFBFBF;
+    padding: 2rem;
+    margin: 1rem;
+    border: 1px solid #FFFFFF;
+    border-radius: 0px;
+}

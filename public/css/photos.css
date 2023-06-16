@@ -1,5 +1,27 @@
 /* Gallery */
 
+html, body {
+    background-color: #E8E8E8;
+}
+
+.select-category {
+    background-color: #BFBFBF;
+}
+
+.gallery {
+    background-color: #47555E;
+}
+
+.btn-category {
+    background-color: #96939B;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+}
+
+.btn-category:hover {
+    background-color: #FC814A;
+}
+
 .align-btn {
     display:inline-block;
     width:45%;

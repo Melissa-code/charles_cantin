@@ -10,8 +10,8 @@
 
 <section class="row d-flex justify-content-center pt-4">
     <div class="col-md-10 d-flex justify-content-center">
-        <a href="<?= URL ?>galerie" class="btn btn-sm btn-dark w-100 border border-light rounded-0 mb-2">
-            <i class="fa-solid fa-backward" style="color: #ffffff;"></i>
+        <a href="<?= URL ?>galerie" class="btn btn-sm btn-back w-100 border border-light rounded-0 mb-2">
+            <i class="fa-solid fa-backward" style="color: #000000;"></i>
             Revenir
         </a>
         <a href="<?= URL ?>categories/ajouterCategorie" class="btn btn-sm btn-custom w-100 border border-light rounded-0 mb-2">

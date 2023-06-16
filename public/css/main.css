@@ -5,11 +5,6 @@
 #47555E; gris foncé logo
 #FC814A; orange
 https://coolors.co/palette/000000-ffffff-47555e-f4b942-bf4e30
-#000000
-#ffffff
-#47555e gris logo
-#f4b942 jaune
-#bf4e30 orange
 */
 
 *, ::before, ::after {
@@ -21,13 +16,6 @@ https://coolors.co/palette/000000-ffffff-47555e-f4b942-bf4e30
 html, body {
     font-family: 'Hind Guntur', sans-serif;
     font-size: 18px;
-    margin: 0;
-    background-image: url("../assets/images/home-bg.png");
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 h1, h2, h3 {
@@ -51,13 +39,17 @@ h4 {
     font-weight: bolder;
 }
 
-a.active {
-    background-color : #FC814A;
-    border-radius: 5px;
-}
+/*a.active {*/
+/*    background-color : #FC814A;*/
+/*    border-radius: 5px;*/
+/*}*/
 
 .nav-link {
     font-size: 22px;
+}
+
+.nav-link:hover {
+    color: #fc814a!important;
 }
 
 .btn-outline-custom {
@@ -69,17 +61,20 @@ a.active {
     background-color: #47555E;
 }
 
-/* Home */
+.card {
+    background-color: #96939B;
+}
 
 .title-frame {
-    background-color: #FC814A;
+    background-color: #E8E8E8;
     opacity: 0.9;
+    border: 1px solid #FFFFFF;
 }
 
-.subtitle-frame {
-    background-color: #BFBFBF;
-    color: white;
-}
+/*.subtitle-frame {*/
+/*    background-color: #BFBFBF;*/
+/*    color: white;*/
+/*}*/
 
 .btn-custom {
     background-color: #FC814A;
@@ -92,58 +87,25 @@ a.active {
     color: white;
 }
 
-
-
-.services {
-    background-image: url("../assets/images/home-bg.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100vw;
-    height: 70vh;
+.btn-client {
+    background-color: #47555E;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
 }
 
-/*.contact {*/
-/*    background-image: url("../assets/images/home-bg.png");*/
-/*    background-repeat: no-repeat;*/
-/*    background-position: center;*/
-/*    background-size: cover;*/
-/*    width: 100vw;*/
-/*    height: 70vh;*/
-/*}*/
 
-.address, .contact-form {
-    background-color: #E8E8E8;
-    padding: 1rem;
-    margin: 1rem;
-    border: 1px solid #BFBFBF;
-    border-radius: 10px;
-}
 
-.address {
-    display: flex;
-    justify-content: center;
-    line-height: 40px;
-}
 
-.login {
-    background-image: url("../assets/images/home-bg.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100vw;
-    height: 70vh;
-}
-.login-form {
-    background-color: #E8E8E8;
-    padding: 2rem;
-    margin: 1rem;
-    border: 1px solid #BFBFBF;
-    border-radius: 10px;
-}
 
-.map {
-    width: 600px;
-}
+/* *********************************************
+               Media queries
+********************************************** */
 
-/* Footer */
+/* mobile phones */
+
+@media screen and (min-device-width: 280px) and (max-device-width: 767px) {
+
+    h1 {
+        font-size: 30px;
+    }
+}

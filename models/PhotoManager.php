@@ -42,7 +42,6 @@ class PhotoManager extends ModelClass
     {
         foreach ($this->photos as $photo) {
             if ($photo->getIdPhoto() === (int)$id) {
-                //var_dump($photo);
                 return $photo;
             }
         }
@@ -57,7 +56,6 @@ class PhotoManager extends ModelClass
      * @param $idCategory
      */
     public function addPhotoDb($legend, $image, $idAdmin, $idCategory) {
-
         $pdo = $this->getDb();
         // Count the duplicate photos in the database
         $req = $pdo->prepare("SELECT count(*) as numberLegend FROM photos WHERE legend_photo = :legend");
@@ -68,7 +66,7 @@ class PhotoManager extends ModelClass
         while($legendVerification = $req->fetch()) {
             // If the photos already exists, print an error message
             if($legendVerification['numberLegend'] >= 1) {
-                echo("La légende de la photo existe déjà");
+                MessagesClass::alertMsg("Cette photo existe déjà.", MessagesClass::RED_COLOR);
                 header('location:'.URL."galerie/ajouterPhoto");
                 exit();
             }
@@ -86,7 +84,6 @@ class PhotoManager extends ModelClass
                 if($data > 0) {
                     $photo = new PhotoClass($this->getDb()->lastInsertId(), $legend, $image, $idAdmin, $idCategory);
                     $this->addPhoto($photo);
-                    echo ("La photo a bien été créée");
                 }
             }
         }
@@ -120,8 +117,6 @@ class PhotoManager extends ModelClass
      * @param int|null $id_admin
      */
     public function updatePhotoDb(?string $oldId, ?string $legend, ?string $image, ?string $id_category, ?int $id_admin) {
-
-        // Update the photo in the database
         $pdo = $this->getDb();
         $req = $pdo->prepare("UPDATE photos SET legend_photo = :legend, image_photo = :image, id_category = :id_category, id_admin = :id_admin WHERE id_photo = :oldId");
         $req->bindValue(":oldId", (int)$oldId, PDO::PARAM_INT);

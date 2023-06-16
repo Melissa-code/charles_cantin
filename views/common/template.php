@@ -11,38 +11,36 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= URL ?>public/css/main.css">
     <?php if(!empty($page_css)) : ?>
-        <link type="text/css" href="<?= URL ?>public/css/<?=$page_css?>" rel="stylesheet">
+        <link type="text/css" href="<?= URL ?>public/css/<?= $page_css ?>" rel="stylesheet">
     <?php endif; ?>
     <title><?= $page_title ?></title>
 </head>
 
-<body class="d-flex flex-column justify-content-between min-vh-100">
+<body class="d-flex flex-column justify-content-between body-img">
 
     <!-- Header -->
     <?php require_once("views/common/header.php"); ?>
 
     <!-- Main -->
-    <div class="container-fluid">
-        <main class="main-content">
-            <!-- Alert message -->
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-5 fw-semibold">
-                    <?php
-                    if(!empty($_SESSION['alert'])) {
-                        foreach($_SESSION['alert'] as $alert){
-                            echo "<div class='mt-2 alert alert-dismissible ". $alert['type'] ."' role='alert'>
-                                    ".$alert['message']." <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                           </div>";
-                        }
-                        unset($_SESSION['alert']);
+    <main class="container-fluid">
+        <!-- Alert message -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-5 fw-semibold">
+                <?php
+                if(!empty($_SESSION['alert'])) {
+                    foreach($_SESSION['alert'] as $alert){
+                        echo "<div class='mt-2 alert alert-dismissible ". $alert['type'] ."' role='alert'>
+                                ".$alert['message']." <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                       </div>";
                     }
-                    ?>
-                </div>
+                    unset($_SESSION['alert']);
+                }
+                ?>
             </div>
-            <!-- Page content -->
-            <?= $page_content; ?>
-        </main>
-    </div>
+        </div>
+        <!-- Page content -->
+        <?= $page_content; ?>
+    </main>
 
     <!-- Footer -->
     <?php require_once("views/common/footer.php"); ?>
