@@ -67,7 +67,7 @@ try {
             } else if($url[1] === "modifierCategorieValidation") {
                 $categoryController->updateValidation();
             }
-            break;
+        break;
 
         case "tarifs":
             if(empty($url[1])) {
@@ -84,6 +84,7 @@ try {
                 $servicesController->updateValidation();
             }
         break;
+
         case "contact":
             $contactController->contact();
         break;

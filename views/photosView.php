@@ -54,9 +54,9 @@
                     <?php if($category->getIdCategory() === $photo->getIdCategory()): ?>
                     <div class="col-md-3 gx-2">
                         <span class="img-bg">
-                            <a href="<?= URL ?>public/assets/images/<?= $photo->getImagePhoto(); ?>" data-toggle="lightbox" >
+                            <a href="<?= URL ?>public/assets/images/uploads/<?= $photo->getImagePhoto(); ?>" data-toggle="lightbox" >
                                 <span class="img-legend"><?= $photo->getLegendPhoto(); ?></span>
-                                <img src="<?= URL ?>public/assets/images/<?= $photo->getImagePhoto(); ?>" class="img-fluid">
+                                <img src="<?= URL ?>public/assets/images/uploads/<?= $photo->getImagePhoto(); ?>" class="img-fluid">
                             </a>
                         </span>
                         <div class="row d-flex align-items-center mx-0">

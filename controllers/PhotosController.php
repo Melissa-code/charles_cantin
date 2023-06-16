@@ -74,18 +74,18 @@ class PhotosController
      * Add a new photo
      *
      */
-    public function createValidation() {
+    public function createValidation(): void {
         // Secure the input
         $legend_photo = SecurityClass::secureHtml($_POST['legend_photo']);
         $id_admin = 1;
-
-        if(strlen($legend_photo) >= 50) {
+        // Check the length of the legend
+        if($legend_photo === "" || strlen($legend_photo) >= 50) {
             MessagesClass::alertMsg("Légende de photo mal renseignée.", MessagesClass::RED_COLOR);
             header("location: ".URL."galerie");
             exit();
         } else {
             $file = $_FILES['image_photo'];
-            $directory = "public/assets/images/";
+            $directory = "public/assets/images/uploads/"; //ADD
             $image_photo = $this->addImage($file, $directory);
             $this->photoManager->addPhotoDb($legend_photo, $image_photo, $id_admin, $_POST['id_category']);
             MessagesClass::alertMsg("La photo a bien été créée.", MessagesClass::GREEN_COLOR);
@@ -138,7 +138,7 @@ class PhotosController
      */
     public function delete(string $id): void {
         $imageName = $this->photoManager->getPhotoById($id)->getImagePhoto();
-        unlink("public/assets/images/".$imageName); // Delete the image file
+        unlink("public/assets/images/uploads/".$imageName); // Delete the image file
         $this->photoManager->deleteDb($id);
         MessagesClass::alertMsg("La photo a bien été supprimée.", MessagesClass::GREEN_COLOR);
         header("location: ".URL."galerie");
@@ -175,8 +175,8 @@ class PhotosController
         $legend_photo = SecurityClass::secureHtml($_POST['legend_photo']);
         $id_admin = 1;
 
-        if(strlen($legend_photo) >= 50) {
-            //echo "Légende de photo trop longue. Réessayer";
+        if($legend_photo === "" || strlen($legend_photo) >= 50) {
+            MessagesClass::alertMsg("Légende de photo mal renseignée.", MessagesClass::RED_COLOR);
             header("location: ".URL."galerie");
             exit();
         }
@@ -187,9 +187,9 @@ class PhotosController
             // if the admin is changing the image file
             if($file['size'] > 0) {
                 // remove the old image
-                unlink("public/assets/images/".$oldImage);
+                unlink("public/assets/images/uploads/".$oldImage);
                 // add the new image file
-                $directory = "public/assets/images/";
+                $directory = "public/assets/images/uploads/";
                 $image_photo = $this->addImage($file, $directory);
             } else {
                 $image_photo = $oldImage;
