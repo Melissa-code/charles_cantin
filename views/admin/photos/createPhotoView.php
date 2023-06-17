@@ -35,7 +35,7 @@
                     <?php endforeach ?>
                 </select>
             </div>
-            <!-- Buttons -->
+            <!-- Buttons back or add -->
             <div class="row d-flex justify-content-center align-items-center mx-0">
                     <a href="<?= URL ?>galerie" class="btn btn-back w-50 border border-light rounded-0 mb-2">
                         <i class="fa-solid fa-backward" style="color: #FFFFFF;"></i> Revenir

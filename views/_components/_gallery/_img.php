@@ -8,14 +8,14 @@
         </a>
     </span>
     <!-- Buttons Update & Delete a photo -->
-    <div class="row d-flex align-items-center mx-0">
+    <div class="row d-flex mx-0">
         <!-- Update a photo -->
-        <div class="col-md-6 gx-0">
+        <div class="col-6 gx-0">
             <a href="<?= URL ?>galerie/modifierPhoto/<?= $photo->getIdPhoto(); ?>" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
                 <i class="fa-solid fa-pen"></i>
             </a>
         </div>
-        <div class="col-md-6 gx-0">
+        <div class="col-6 gx-0">
             <!-- Delete a photo -->
             <form class="" action="<?= URL ?>galerie/supprimer/<?= $photo->getIdPhoto(); ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?')">
                 <button type="submit" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
