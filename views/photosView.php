@@ -49,36 +49,23 @@
 <section class="row d-flex justify-content-center py-3 gallery">
     <div class="col-md-11 d-flex justify-content-center">
         <div class="row">
-            <?php foreach($categories as $category) : ?>
-                <?php foreach($photos as $photo) : ?>
-                    <?php if($category->getIdCategory() === $photo->getIdCategory()): ?>
-                    <div class="col-md-3 gx-2">
-                        <span class="img-bg">
-                            <a href="<?= URL ?>public/assets/images/uploads/<?= $photo->getImagePhoto(); ?>" data-toggle="lightbox" >
-                                <span class="img-legend"><?= $photo->getLegendPhoto(); ?></span>
-                                <img src="<?= URL ?>public/assets/images/uploads/<?= $photo->getImagePhoto(); ?>" class="img-fluid">
-                            </a>
-                        </span>
-                        <div class="row d-flex align-items-center mx-0">
-                            <!-- Update a photo -->
-                            <div class="col-md-6 gx-0">
-                                <a href="<?= URL ?>galerie/modifierPhoto/<?= $photo->getIdPhoto(); ?>" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                            </div>
-                            <div class="col-md-6 gx-0">
-                            <!-- Delete a photo -->
-                                <form class="" action="<?= URL ?>galerie/supprimer/<?= $photo->getIdPhoto(); ?>" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?')">
-                                    <button type="submit" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
+            <!-- wedding -->
+            <?php include_once('views/_components/_gallery/_weddingGrid.php'); ?>
+            <!-- pregnant -->
+            <?php include_once('views/_components/_gallery/_pregnantGrid.php'); ?>
+            <!-- baptism -->
+            <?php include_once('views/_components/_gallery/_baptismGrid.php'); ?>
+            <!-- couple -->
+            <?php include_once('views/_components/_gallery/_coupleGrid.php'); ?>
+            <!-- baby -->
+            <?php include_once('views/_components/_gallery/_babyGrid.php'); ?>
+            <!-- family -->
+            <?php include_once('views/_components/_gallery/_familyGrid.php'); ?>
+            <!-- portrait -->
+            <?php include_once('views/_components/_gallery/_portraitGrid.php'); ?>
+            <!-- other -->
+            <?php include_once('views/_components/_gallery/_otherGrid.php'); ?>
+
         </div>
     </div>
 </section>
