@@ -1,8 +1,9 @@
 <?php
-
 require_once ("models/ServiceManager.php");
+require_once ("MainController.php");
 
-class ServicesController
+
+class ServicesController extends MainController
 {
     private ServiceManager $serviceManager;
 
@@ -11,18 +12,6 @@ class ServicesController
         $this->serviceManager->getAllServicesDb();
     }
 
-    /**
-     * Generate a page
-     *
-     * @param array $data
-     */
-    private function generatePage(array $data): void {
-        extract($data);
-        ob_start();
-        require_once($view);
-        $page_content = ob_get_clean();
-        require_once("views/common/template.php");
-    }
 
     /**
      * Display all the services & prices

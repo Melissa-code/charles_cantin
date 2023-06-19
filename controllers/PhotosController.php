@@ -3,9 +3,10 @@
 require_once("models/PhotoManager.php");
 require_once("models/CategoryManager.php");
 require_once("models/HomeManager.php");
+require_once("MainController.php");
 
 
-class PhotosController
+class PhotosController extends MainController
 {
     private PhotoManager $photoManager;
     private CategoryManager $categoryManager;
@@ -20,18 +21,6 @@ class PhotosController
         $this->homeManager->getAllAdminsDb();
     }
 
-    /**
-     * Generate a page
-     *
-     * @param array $data
-     */
-    private function generatePage(array $data): void {
-        extract($data);
-        ob_start();
-        require_once($view);
-        $page_content = ob_get_clean();
-        require_once("views/common/template.php");
-    }
 
     /**
      * Diplay all the photos in a gallery

@@ -1,15 +1,8 @@
 <?php
 
 
-class LoginController
+class LoginController extends MainController
 {
-    public function generatePage(array $data): void {
-        extract($data);
-        ob_start();
-        require_once("views/loginView.php");
-        $page_content = ob_get_clean();
-        require_once("views/common/template.php");
-    }
 
     public function login(): void {
 //        $_SESSION['alert'] = [
@@ -20,6 +13,7 @@ class LoginController
         $data_page = [
             "page_description" => "Formulaire de connexion",
             "page_title" => "Connexion",
+            "view" => "views/loginView.php",
             "page_css" => "login.css",
         ];
         $this->generatePage($data_page);

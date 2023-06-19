@@ -1,9 +1,10 @@
 <?php
 
 require_once ("models/CategoryManager.php");
+require_once("MainController.php");
 
 
-class CategoryController {
+class CategoryController extends MainController {
 
     private CategoryManager $categoryManager;
 
@@ -12,19 +13,6 @@ class CategoryController {
         $this->categoryManager->getAllCategoriesDb();
     }
 
-    /**
-     * Generate a page
-     *
-     * @param array $data
-     */
-    private function generatePage(array $data): void
-    {
-        extract($data);
-        ob_start();
-        require_once($view);
-        $page_content = ob_get_clean();
-        require_once("views/common/template.php");
-    }
 
     /**
      * Diplay all the categories in an admin page

@@ -1,8 +1,10 @@
 <?php
 
 require_once("models/HomeManager.php");
+require_once("MainController.php");
 
-class HomeController
+
+class HomeController extends MainController
 {
     private HomeManager $homeManager;
 
@@ -11,13 +13,6 @@ class HomeController
         $this->homeManager->getAllAdminsDb();
     }
 
-    private function generatePage(array $data): void {
-        extract($data); // create variables from an array
-        ob_start();
-        require_once("views/homeView.php");
-        $page_content = ob_get_clean();
-        require_once("views/common/template.php");
-    }
 
     /**
      * Home
@@ -32,7 +27,8 @@ class HomeController
             "page_description" => "Portfolio de Charles Cantin photographe",
             "page_title" => "Accueil",
             "admin" => $admin,
-            "page_css" => "home.css",
+            "view" => "views/homeView.php",
+            "page_css" => "home.css"
         ];
         $this->generatePage($data_page);
     }
