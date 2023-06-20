@@ -16,17 +16,17 @@
         <!-- Menu links -->
         <ul class="nav nav-navbar col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li class="nav-item">
-                <a href="<?= URL ?>galerie" class="nav-link link-dark fw-semibold px-2<?php if($currentPage === "galerie") {echo "active";} ?>">
+                <a href="<?= URL ?>galerie" class="nav-link link-dark fw-semibold <?php if($currentPage === "galerie") {echo "active";} ?>">
                     Galerie
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?= URL ?>tarifs" class="nav-link link-dark fw-semibold px-2 <?php if($currentPage === "tarifs") {echo "active";} ?>">
+                <a href="<?= URL ?>tarifs" class="nav-link link-dark fw-semibold <?php if($currentPage === "tarifs") {echo "active";} ?>">
                     Tarifs
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?= URL ?>contact" class="nav-link link-dark fw-semibold px-2 <?php if($currentPage === "contact") {echo "active";} ?>">
+                <a href="<?= URL ?>contact" class="nav-link link-dark fw-semibold <?php if($currentPage === "contact") {echo "active";} ?>">
                     Contact
                 </a>
             </li>

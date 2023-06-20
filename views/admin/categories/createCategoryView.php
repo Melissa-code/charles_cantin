@@ -10,20 +10,16 @@
 
 <section class="row my-4 category">
     <div class="col-12 d-flex justify-content-center">
-        <form action="<?= URL ?>categories/ajouterCategorieValidation" method="POST" class="category-form border border-light rounded-3 p-4">
+        <form action="<?= URL ?>categories/ajouterCategorieValidation" method="POST" class="category-form border border-light rounded-0 p-4">
             <div class="mb-3">
                 <label for="title_category" class="form-label text-light">Libellé : </label>
-                <input type="text" class="form-control" id="title_category" name="title_category" placeholder="Ex: Portrait" required maxlength="30">
+                <input type="text" class="form-control rounded-1" id="title_category" name="title_category" placeholder="Ex: Portrait" required maxlength="30">
             </div>
-            <div class="row d-flex">
+            <div class="row d-flex px-3">
                 <!-- back button -->
-                <div class="col mb-3 ">
-                    <a href="<?= URL ?>categories" class="btn btn-dark">Revenir</a>
-                </div>
+                <a href="<?= URL ?>categories" class="btn btn-back w-50 rounded-0 border border-light">Revenir</a>
                 <!-- submit button -->
-                <div class="col mb-3">
-                    <button type="submit" class="btn btn-custom">Ajouter</button>
-                </div>
+                <button type="submit" class="btn btn-custom w-50 rounded-0 border border-light">Ajouter</button>
             </div>
         </form>
     </div>

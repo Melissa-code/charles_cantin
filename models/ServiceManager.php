@@ -118,7 +118,7 @@ class ServiceManager extends ModelClass
      * @param string $content
      * @param int $id_admin
      */
-    public function updateServiceDB(string $oldId, string $title, string $price, string $content, int $id_admin): void
+    public function updateServiceDb(string $oldId, string $title, string $price, string $content, int $id_admin): void
     {
         $pdo = $this->getDb();
         // Count the duplicate photos in the database
@@ -129,13 +129,13 @@ class ServiceManager extends ModelClass
         // Reading the rows in the table services
         while ($titleVerification = $req->fetch()) {
             // If the service already exists, print an error message
-            if ($titleVerification['numberTitle'] >= 1) {
-                //echo("Le titre de la prestation existe déjà");
+            if ($titleVerification['numberTitle'] >= 2) {
+                MessagesClass::alertMsg("Cette prestation existe déjà.", MessagesClass::RED_COLOR);
                 header('location:' . URL . "tarifs/modifier/".$oldId);
                 exit();
-            } // Update the service in the database
+            }
+            // Update the service in the database
             else {
-                //echo "ok";
                 $req = $pdo->prepare("UPDATE services SET title_service = :title, price_service = :price, content_service = :content, id_admin = :id_admin WHERE id_service = :oldId");
                 $req->bindValue(":oldId", (int)$oldId, PDO::PARAM_INT);
                 $req->bindValue(":title", $title, PDO::PARAM_STR);

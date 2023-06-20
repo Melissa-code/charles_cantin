@@ -31,11 +31,8 @@ h2{
     font-size: 1.5rem;
 }
 
-h3 {
-    font-size: 2rem;
-}
-h4 {
-    font-size: 1em;
+h3, h4 {
+    font-size: 1rem;
     font-weight: bolder;
 }
 
@@ -62,7 +59,7 @@ h4 {
 }
 
 .card {
-    background-color: #96939B;
+    background-color: #47555E;
 }
 
 .title-frame {
@@ -70,11 +67,6 @@ h4 {
     opacity: 0.9;
     border: 1px solid #FFFFFF;
 }
-
-/*.subtitle-frame {*/
-/*    background-color: #BFBFBF;*/
-/*    color: white;*/
-/*}*/
 
 .btn-custom {
     background-color: #FC814A;
@@ -107,8 +99,6 @@ h4 {
 .fa-brands {
     color: #FFFFFF;
 }
-
-
 
 
 /* *********************************************

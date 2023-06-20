@@ -1,11 +1,11 @@
 /* Gallery */
 
 html, body {
-    background-color: #E8E8E8;
+    background-color: #BFBFBF;
 }
 
 .select-category {
-    background-color: #BFBFBF;
+    background-color: #96939B;
 }
 
 .gallery {
@@ -37,7 +37,6 @@ html, body {
     display: none;
     position: absolute;
 }
-
 
 .fa-brands {
     color: black;

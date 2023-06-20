@@ -9,9 +9,9 @@
 <!-- Back or Add a category -->
 
 <section class="row d-flex justify-content-center pt-4">
-    <div class="col-md-10 d-flex justify-content-center">
+    <div class="col-md-9 d-flex justify-content-center">
         <a href="<?= URL ?>galerie" class="btn btn-sm btn-back w-100 border border-light rounded-0 mb-2">
-            <i class="fa-solid fa-backward" style="color: #000000;"></i>
+            <i class="fa-solid fa-backward" style="color: #FFFFFF;"></i>
             Revenir
         </a>
         <a href="<?= URL ?>categories/ajouterCategorie" class="btn btn-sm btn-custom w-100 border border-light rounded-0 mb-2">
@@ -31,21 +31,21 @@
                     <div class="card-body">
                         <!-- Card title -->
                         <h4 class="card-body text-center"><?= $category->getTitleCategory(); ?></h4>
-                        <div class="row d-flex align-items-center mx-0">
-                            <!-- Update a category -->
-                            <div class="col-md-6 gx-0">
-                                <a href="<?= URL ?>categories/modifier/<?= $category->getIdCategory(); ?>" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                            </div>
-                            <div class="col-md-6 gx-0">
-                                <!-- Delete a category -->
-                                <form action="<?= URL ?>categories/supprimer/<?= $category->getIdCategory(); ?>" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette categorie ?')">
-                                    <button type="submit" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </form>
-                            </div>
+                    </div>
+                    <div class="row d-flex ">
+                        <!-- Update a category -->
+                        <div class="col-6 gx-0">
+                            <a href="<?= URL ?>categories/modifier/<?= $category->getIdCategory(); ?>" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                        </div>
+                        <div class="col-6 gx-0">
+                            <!-- Delete a category -->
+                            <form action="<?= URL ?>categories/supprimer/<?= $category->getIdCategory(); ?>" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette categorie ?')">
+                                <button type="submit" class="btn btn-sm w-100 btn-custom border border-light rounded-0">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

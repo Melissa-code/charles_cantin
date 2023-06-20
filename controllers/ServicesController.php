@@ -36,11 +36,12 @@ class ServicesController extends MainController
     /**
      * Display a create form to add a new service
      */
-    public function create() : void {
+    public function create(): void {
         $data_page = array(
             "page_description" => "Formulaire de création d'un tarif et d'une prestation",
-            "page_title" => "Création d'un tarif et prestation",
-            "view" => "views/admin/services/createServiceView.php"
+            "page_title" => "Création d'un tarif",
+            "view" => "views/admin/services/createServiceView.php",
+            "page_css" => "form.css"
              );
         $this->generatePage($data_page);
     }
@@ -59,13 +60,14 @@ class ServicesController extends MainController
             $price_service = "0";
         }
 
-        if(strlen($title_service) > 100) {
-            //echo "Titre de la prestation mal renseigné. Réessayer";
+        if(strlen($title_service) >= 100) {
+            MessagesClass::alertMsg("Titre de la prestation mal renseigné.", MessagesClass::RED_COLOR);
             header("location: ".URL."tarifs");
             exit();
         }
         else {
             $this->serviceManager->addServiceDb($title_service, $price_service, $content_service, $id_admin);
+            MessagesClass::alertMsg("La prestation a bien été ajoutée.", MessagesClass::GREEN_COLOR);
             header("location: ".URL."tarifs");
             exit();
         }
@@ -78,13 +80,13 @@ class ServicesController extends MainController
      */
     public function delete(string $id): void {
         $this->serviceManager->deleteDb($id);
+        MessagesClass::alertMsg("La prestation a bien été supprimée.", MessagesClass::GREEN_COLOR);
         header("location: ".URL."tarifs");
         exit();
     }
 
     /**
      * Display a service updating form
-     *
      * @param string $id
      */
     public function update(string $id) : void {
@@ -92,9 +94,10 @@ class ServicesController extends MainController
 
         $data_page = [
             "page_description" => "Modification d'un tarif et prestation",
-            "page_title" => "Modification d'un tarif et prestation",
+            "page_title" => "Modification d'un tarif",
             "service" => $service,
             "view" => "views/admin/services/updateServiceView.php",
+            "page_css" => "form.css"
         ];
         $this->generatePage($data_page);
     }
@@ -106,7 +109,9 @@ class ServicesController extends MainController
         // Secure the user inputs
         $title_service = SecurityClass::secureHtml($_POST['title_service']);
         $price_service = SecurityClass::secureHtml($_POST['price_service']);
-        $content_service = SecurityClass::secureHtml($_POST['content_service']);
+        $oldID_service = SecurityClass::secureHtml($_POST['oldId_service']);
+        //$content_service = SecurityClass::secureHtml($_POST['content_service']);
+        $content_service = $_POST['content_service'];
         $id_admin = 1;
 
         if($price_service === "") {
@@ -114,13 +119,14 @@ class ServicesController extends MainController
         }
 
         // Check the service title length
-        if(strlen($title_service) > 100) {
-            //echo "Titre du tarif trop long. Resaisir un titre plus cours";
-            header("location: ".URL."tarifs");
+        if($title_service === "" || strlen($title_service) >= 100) {
+            MessagesClass::alertMsg("Titre de la prestation mal renseigné.", MessagesClass::RED_COLOR);
+            header("location: ".URL."tarifs/modifier/".$oldID_service);
             exit();
         }
         else {
-            $this->serviceManager->updateServiceDb($_POST['oldId_service'], $title_service, $price_service, $content_service, $id_admin);
+            $this->serviceManager->updateServiceDb($oldID_service, $title_service, $price_service, $content_service, $id_admin);
+            MessagesClass::alertMsg("La prestation a bien été modifiée.", MessagesClass::GREEN_COLOR);
             header("location: ".URL."tarifs");
             exit();
         }

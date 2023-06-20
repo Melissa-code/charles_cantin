@@ -80,7 +80,7 @@ try {
                 $servicesController->delete($url[2]);
             } else if($url[1] === "modifier") {
                 $servicesController->update($url[2]);
-            } else if($url[1] === "modifierServiceValidation") {
+            } else if($url[1] === "modifierTarifValidation") {
                 $servicesController->updateValidation();
             }
         break;
